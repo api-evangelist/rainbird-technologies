@@ -1,0 +1,54 @@
+openapi: 3.1.0
+info:
+  title: Rainbird API Documentation Decisions Platform API
+  version: 1.2.0
+  description: 'Welcome to the Rainbird API documentation. It contains details of the API calls required to query a Knowledge Map and view evidence for the decisions returned. Knowledge Maps must first be created via the Rainbird Studio. More information on this can be found [here](https://docs.rainbird.ai/rainbird/knowledge-modelling/overview).
+
+
+    # Authentication
+
+
+    <!-- ReDoc-Inject: <security-definitions> -->'
+servers:
+- url: https://api.rainbird.ai
+  description: Rainbird Community Environment
+- url: https://enterprise-api.rainbird.ai
+  description: Rainbird Enterprise Environment
+tags:
+- name: Platform
+  description: Retrieve information about the Rainbird Platform itself.
+paths:
+  /version:
+    get:
+      summary: Version - Reports engine version
+      tags:
+      - Platform
+      operationId: version
+      security:
+      - {}
+      responses:
+        '200':
+          description: Engine version (semver)
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: 4.89.0
+              example: 4.89.0
+components:
+  securitySchemes:
+    apiKey:
+      description: "Authentication with the Rainbird API uses a user key, passed in the header. This can be found on the Account page or with the controls for [publishing a Knowledge Map](https://docs.rainbird.ai/rainbird/knowledge-modelling/publishing-your-km/api-management).  \n\nOur legacy authentication method of HTTP BasicAuth continues to be supported, but we highly advise transitioning to the new method.\n"
+      in: header
+      name: X-API-Key
+      type: apiKey
+    evidenceKey:
+      description: To access secured evidence, you should pass your evidence key
+      in: header
+      name: x-evidence-key
+      type: apiKey
+    interactionKey:
+      description: To access secured interaction logs, you should pass your interaction key
+      in: header
+      name: x-interaction-key
+      type: apiKey

@@ -1,0 +1,1179 @@
+openapi: 3.1.0
+info:
+  title: Rainbird API Documentation Decisions Evidence API
+  version: 1.2.0
+  description: 'Welcome to the Rainbird API documentation. It contains details of the API calls required to query a Knowledge Map and view evidence for the decisions returned. Knowledge Maps must first be created via the Rainbird Studio. More information on this can be found [here](https://docs.rainbird.ai/rainbird/knowledge-modelling/overview).
+
+
+    # Authentication
+
+
+    <!-- ReDoc-Inject: <security-definitions> -->'
+servers:
+- url: https://api.rainbird.ai
+  description: Rainbird Community Environment
+- url: https://enterprise-api.rainbird.ai
+  description: Rainbird Enterprise Environment
+tags:
+- name: Evidence
+  description: 'Access the facts, information and the chain of reasoning that led to a decision
+
+    '
+paths:
+  /analysis/evidence/{factID}/{sessionID}:
+    get:
+      summary: Evidence - Returns the evidence for a given fact
+      tags:
+      - Evidence
+      description: View the source of the fact, including how it was derived when inferred from a rule.
+      operationId: evidence
+      parameters:
+      - in: path
+        name: factID
+        schema:
+          type: string
+        required: true
+        description: The factID for which to retrieve evidence
+      - in: path
+        name: sessionID
+        schema:
+          type: string
+        required: true
+        description: The sessionID where the fact was created
+      security:
+      - {}
+      - evidenceKey: []
+      responses:
+        '200':
+          description: Fact detail
+          content:
+            application/json:
+              example:
+                factID: WA:RF:82a7b990eb2fe491389f37de10b1cd752cbd692b8c2c0d3fb36b354491f68173
+                source: rule
+                fact:
+                  subject:
+                    type: policy holder
+                    value: Ben
+                    dataType: string
+                  relationship:
+                    type: can claim
+                  object:
+                    type: claim
+                    value: repair
+                    dataType: string
+                  certainty: 100
+                time: 1752142054143
+                rule:
+                  bindings:
+                    EQUIPMENT: mobile phone
+                    LOSS: water damage
+                    O: repair
+                    POLICY: Gold
+                    S: Ben
+                  conditions:
+                  - certainty: 100
+                    factID: WA:IF:af4d81cc4d1175c0c488d6632599f718520366541ce99e61fc83eff7f640749a
+                    factKey: 9c141933-344b-4d36-a3ef-ffdd96fbcb81
+                    impact: 14.29
+                    object: Gold
+                    objectType: string
+                    relationship: holds
+                    salience: 100
+                    subject: Ben
+                  - certainty: 100
+                    factID: WA:KF:c2a63a881f856798e2df8999d7b7956bc28dd50e8e99d6728ca46730955263c1
+                    impact: 14.29
+                    object: repair
+                    objectType: string
+                    relationship: provides
+                    salience: 100
+                    subject: Gold
+                  - certainty: 100
+                    factID: WA:AF:82b2bc07382e0372685aa06e30b1c9db95ccc30051cfc2ea3de4c2e7fc69d0c6
+                    factKey: 04b02c60-73c1-436c-b0d3-1ee44df7c14b
+                    impact: 14.29
+                    object: water damage
+                    objectType: string
+                    relationship: suffered
+                    salience: 100
+                    subject: Ben
+                  - certainty: 100
+                    factID: WA:KF:cb08149770bded892f06d37433c305f4f4667837323167d21580b24de3a9c5dd
+                    impact: 14.29
+                    object: water damage
+                    objectType: string
+                    relationship: appropriate for
+                    salience: 100
+                    subject: repair
+                  - certainty: 100
+                    factID: WA:KF:ec6e5652be4a48515d68c795b0497e87d6beeb83a384c4ae11ca562c6ba0e499
+                    impact: 14.29
+                    object: mobile phone
+                    objectType: string
+                    relationship: insures
+                    salience: 100
+                    subject: Gold
+                  - certainty: 100
+                    factID: WA:AF:c6a366105ea7691fffae2e75fe27293bd66b4155d352213cee51368272af07b6
+                    factKey: 22667649-4df6-4731-9498-e4eb9c25d22c
+                    impact: 14.29
+                    object: mobile phone
+                    objectType: string
+                    relationship: happened to
+                    salience: 100
+                    subject: water damage
+                  - certainty: 100
+                    factID: WA:KF:7467c2c1c00149ac477f0246173ef9cb19d08243624b52ddf8a7e05791cd5550
+                    impact: 14.29
+                    object: water damage
+                    objectType: string
+                    relationship: covers
+                    salience: 100
+                    subject: Gold
+                  - expression:
+                      functions:
+                        countRelationshipInstances( 'Ben', 'has previously claimed', *):
+                          facts:
+                          - certainty: 100
+                            factID: WA:AF:6ee11124ef7abd40707e1813a4d0b7851d86f1c36e42eaf3e559f02f441668e5
+                            factKey: 5a337648-3fa1-46ec-b67e-7f0aa5662863
+                            object: laptop
+                            objectType: string
+                            relationship: has previously claimed
+                            subject: Ben
+                          - certainty: 100
+                            factID: WA:AF:6ee11124ef7abd40707e1813a4d0b7851d86f1c36e42eaf3e559f02f441668e5
+                            factKey: 5a337648-3fa1-46ec-b67e-7f0aa5662863
+                            object: headphones
+                            objectType: string
+                            relationship: has previously claimed
+                            subject: Ben
+                          - certainty: 100
+                            factID: WA:AF:6ee11124ef7abd40707e1813a4d0b7851d86f1c36e42eaf3e559f02f441668e5
+                            factKey: 5a337648-3fa1-46ec-b67e-7f0aa5662863
+                            object: bicycle
+                            objectType: string
+                            relationship: has previously claimed
+                            subject: Ben
+                          result:
+                            type: number
+                            value: 3
+                      text: countRelationshipInstances( 'Ben', 'has previously claimed', *)
+                      value: '%RELS'
+                    impact: 14.29
+                    salience: 100
+                    wasMet: true
+                  - expression:
+                      text: '%RELS is less than 10'
+                      value: '%O'
+                    impact: 14.29
+                    salience: 100
+                    wasMet: true
+                  ruleMaxCertainty: 100
+              schema:
+                type: object
+                properties:
+                  factID:
+                    type: string
+                  source:
+                    type: string
+                  fact:
+                    type: object
+                    properties:
+                      subject:
+                        type: object
+                        properties:
+                          type:
+                            type: string
+                          value:
+                            type: string
+                          dataType:
+                            type: string
+                      relationship:
+                        type: object
+                        properties:
+                          type:
+                            type: string
+                      object:
+                        type: object
+                        properties:
+                          type:
+                            type: string
+                          value:
+                            $ref: '#/components/schemas/Object'
+                          dataType:
+                            type: string
+                      certainty:
+                        $ref: '#/components/schemas/Certainty'
+                  time:
+                    type: number
+                  rule:
+                    type: object
+                    properties:
+                      bindings:
+                        type: object
+                        additionalProperties: true
+                      conditions:
+                        type: array
+                        description: An array of conditions and/or expressions of the rule
+                        items:
+                          oneOf:
+                          - type: object
+                            properties:
+                              subject:
+                                $ref: '#/components/schemas/Subject'
+                              relationship:
+                                $ref: '#/components/schemas/Relationship'
+                              object:
+                                $ref: '#/components/schemas/Object'
+                              salience:
+                                $ref: '#/components/schemas/Salience'
+                              certainty:
+                                $ref: '#/components/schemas/Certainty'
+                              impact:
+                                $ref: '#/components/schemas/Impact'
+                              factID:
+                                type: string
+                              objectType:
+                                type: string
+                              alt:
+                                $ref: '#/components/schemas/Alt'
+                              factKey:
+                                type: string
+                          - type: object
+                            properties:
+                              expression:
+                                type: object
+                                properties:
+                                  functions:
+                                    type: object
+                                    properties:
+                                      function-that-was-called:
+                                        type: object
+                                        properties:
+                                          facts:
+                                            type: array
+                                            items:
+                                              type: object
+                                              properties:
+                                                subject:
+                                                  $ref: '#/components/schemas/Subject'
+                                                relationship:
+                                                  $ref: '#/components/schemas/Relationship'
+                                                object:
+                                                  $ref: '#/components/schemas/Object'
+                                                certainty:
+                                                  $ref: '#/components/schemas/Certainty'
+                                                factID:
+                                                  type: string
+                                                objectType:
+                                                  type: string
+                                                factKey:
+                                                  type: string
+                                          result:
+                                            type: object
+                                            properties:
+                                              type:
+                                                type: string
+                                              value:
+                                                oneOf:
+                                                - type: string
+                                                - type: number
+                                                - type: boolean
+                                  text:
+                                    type: string
+                                  value:
+                                    type: string
+                              impact:
+                                $ref: '#/components/schemas/Impact'
+                              salience:
+                                $ref: '#/components/schemas/Salience'
+                              wasMet:
+                                $ref: '#/components/schemas/WasMet'
+                              alt:
+                                $ref: '#/components/schemas/Alt'
+                      ruleMaxCertainty:
+                        $ref: '#/components/schemas/Certainty'
+  /analysis/interactions/{sessionID}:
+    get:
+      summary: Interaction Log - Retrieves interaction events
+      tags:
+      - Evidence
+      description: View a log of interaction events within the session, including queries, injected facts, questions asked, answers given and results returned.<br><br> **Note:** interaction log recording is switched **off** by default. It must be enabled in the Studio per version per knowledge map. Only sessions started **after** it is enabled will be recorded.
+      operationId: interactions
+      parameters:
+      - in: path
+        name: sessionID
+        schema:
+          type: string
+        required: true
+        description: The session id to access the interaction logs
+      - in: query
+        name: format
+        schema:
+          type: string
+        required: false
+        description: Format of the retrieved data. CSV or JSON
+      security:
+      - {}
+      - interactionKey: []
+      responses:
+        '200':
+          description: Interaction log detail
+          content:
+            application/json:
+              schema:
+                properties:
+                  values:
+                    oneOf:
+                    - $ref: '#/components/schemas/InteractionEventStart'
+                    - $ref: '#/components/schemas/InteractionEventQuestions'
+                    - $ref: '#/components/schemas/InteractionEventQuery'
+                    - $ref: '#/components/schemas/InteractionEventAnswers'
+                    - $ref: '#/components/schemas/InteractionEventResults'
+                    - $ref: '#/components/schemas/InteractionEventInject'
+                    - $ref: '#/components/schemas/InteractionEventDatasource'
+                    type: object
+                    description: 'The object that contains the specific interaction log
+
+                      '
+                  event:
+                    type: string
+                    description: 'The interaction event name
+
+                      '
+                  created:
+                    type: string
+                    description: 'The creation time of the specific interaction
+
+                      '
+              example:
+              - values:
+                  start:
+                    useDraft: false
+                    kmVersionID: 77135768-7634-49f0-9fbf-ed915ce08a66
+                    sessionID: c1bf18d7-d1f0-44bc-a639-8cd4ded56dce
+                event: start
+                created: '2025-07-10T10:06:27.780Z'
+              - values:
+                  facts:
+                  - subject: Ben
+                    object: Gold
+                    relationship: holds
+                    certainty: 100
+                event: inject
+                created: '2025-07-10T10:06:37.987Z'
+              - values:
+                  query:
+                    subject: Ben
+                    relationship: can claim
+                event: query
+                created: '2025-07-10T10:06:44.532Z'
+              - values:
+                  questions:
+                  - prompt: What type of loss has Ben suffered?
+                    relationship: suffered
+                    subject: Ben
+                event: question
+                created: '2025-07-10T10:06:44.713Z'
+              - values:
+                  answers:
+                  - subject: Ben
+                    object: water damage
+                    relationship: suffered
+                    certainty: 100
+                event: answer
+                created: '2025-07-10T10:07:19.252Z'
+              - values:
+                  questions:
+                  - prompt: What item of equipment suffered water damage?
+                    relationship: happened to
+                    subject: water damage
+                event: question
+                created: '2025-07-10T10:07:19.523Z'
+              - values:
+                  answers:
+                  - subject: water damage
+                    object: mobile phone
+                    relationship: happened to
+                    certainty: 100
+                event: answer
+                created: '2025-07-10T10:07:34.098Z'
+              - values:
+                  results:
+                  - subject: Ben
+                    object: repair
+                    relationship: can claim
+                    certainty: 100
+                  - subject: Ben
+                    object: new replacement
+                    relationship: can claim
+                    certainty: 97
+                event: result
+                created: '2025-07-10T10:07:34.276Z'
+  /analysis/session/{sessionID}:
+    get:
+      summary: Session - Returns session information
+      tags:
+      - Evidence
+      description: Access session information, such as all of the facts available within a session, or version information for the knowledge map used in a session.
+      operationId: session
+      parameters:
+      - in: path
+        name: sessionID
+        schema:
+          type: string
+        required: true
+        description: The sessionID of the session
+      - in: query
+        name: filter
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - version
+            - facts
+          default:
+          - version
+        required: false
+        description: The type of information requested.
+      - in: query
+        name: relationships
+        schema:
+          type: array
+          items:
+            type: string
+          description: A comma-separated list of relationships to filter the session data by.
+        required: false
+      security:
+      - apiKey: []
+      responses:
+        '200':
+          description: Session detail
+          content:
+            application/json:
+              examples:
+                version:
+                  value:
+                    km:
+                      id: 77135768-7634-49f0-9fbf-ed915ce08a66
+                      name: Loss Assessment
+                      versionID: 77135768-7634-49f0-9fbf-ed915ce08a66
+                      versionCreated: '2025-07-09T14:27:22Z'
+                      versionStatus: Draft
+                facts:
+                  value:
+                    global:
+                    - id: WA:KF:2d8e855961c42735887a0df394fed28814630c9107d347f965f49703476441b1
+                      subject:
+                        concept: claim
+                        value: new replacement
+                        dataType: string
+                      relationship: appropriate for
+                      object:
+                        concept: loss
+                        value: theft
+                        dataType: string
+                      certainty: 100
+                      source: knowledgemap
+                    - id: WA:KF:2f7c748e1665e91b677f28c8314b03e04e31690225106f973836566600e2e0d4
+                      subject:
+                        concept: claim
+                        value: refurbished replacement
+                        dataType: string
+                      relationship: appropriate for
+                      object:
+                        concept: loss
+                        value: water damage
+                        dataType: string
+                      certainty: 80
+                      source: knowledgemap
+                    - id: WA:KF:452e21b67b13557e39f277a822e485c88f7951d730da2835134f48a30d4d87e5
+                      subject:
+                        concept: claim
+                        value: refurbished replacement
+                        dataType: string
+                      relationship: appropriate for
+                      object:
+                        concept: loss
+                        value: theft
+                        dataType: string
+                      certainty: 100
+                      source: knowledgemap
+                    - id: WA:KF:5d4c517878afbec4cc80cf1a06c137adaeea6d978427e7b82698dd38cfd5aeed
+                      subject:
+                        concept: claim
+                        value: repair
+                        dataType: string
+                      relationship: appropriate for
+                      object:
+                        concept: loss
+                        value: cosmetic damage
+                        dataType: string
+                      certainty: 100
+                      source: knowledgemap
+                    - id: WA:KF:91350c61fd7c4522da5151b5746e5c143f636e5aabcc80b40fb13370d13cb6f8
+                      subject:
+                        concept: claim
+                        value: new replacement
+                        dataType: string
+                      relationship: appropriate for
+                      object:
+                        concept: loss
+                        value: loss
+                        dataType: string
+                      certainty: 100
+                      source: knowledgemap
+                    - id: WA:KF:9e80825a20ef6734cda703059ce8e0666df50d88411d66e9fb718db6b4a1def4
+                      subject:
+                        concept: claim
+                        value: new replacement
+                        dataType: string
+                      relationship: appropriate for
+                      object:
+                        concept: loss
+                        value: water damage
+                        dataType: string
+                      certainty: 80
+                      source: knowledgemap
+                    - id: WA:KF:ac490cd237b17155c8f685d5789f23e0497d8d5b80e49442e2f10c1587b132c9
+                      subject:
+                        concept: claim
+                        value: new replacement
+                        dataType: string
+                      relationship: appropriate for
+                      object:
+                        concept: loss
+                        value: cosmetic damage
+                        dataType: string
+                      certainty: 60
+                      source: knowledgemap
+                    - id: WA:KF:cb08149770bded892f06d37433c305f4f4667837323167d21580b24de3a9c5dd
+                      subject:
+                        concept: claim
+                        value: repair
+                        dataType: string
+                      relationship: appropriate for
+                      object:
+                        concept: loss
+                        value: water damage
+                        dataType: string
+                      certainty: 100
+                      source: knowledgemap
+                    - id: WA:KF:e9a46021b70eb9518e5f66668c28ad056b5cacefede150ec2c4bc2245f39d92a
+                      subject:
+                        concept: claim
+                        value: refurbished replacement
+                        dataType: string
+                      relationship: appropriate for
+                      object:
+                        concept: loss
+                        value: loss
+                        dataType: string
+                      certainty: 100
+                      source: knowledgemap
+                    - id: WA:KF:efafce27d5538cf6a7c53489c32c78c060170c4e55b9a56abf61f5bf61c52fff
+                      subject:
+                        concept: claim
+                        value: refurbished replacement
+                        dataType: string
+                      relationship: appropriate for
+                      object:
+                        concept: loss
+                        value: cosmetic damage
+                        dataType: string
+                      certainty: 60
+                      source: knowledgemap
+                    - id: WA:KF:1b01b10693a4774a6d3ec3e7afdbed19f8efc719532fbb6889ef8550fc7d7e6e
+                      subject:
+                        concept: policy
+                        value: Bronze
+                        dataType: string
+                      relationship: covers
+                      object:
+                        concept: loss
+                        value: loss
+                        dataType: string
+                      certainty: 100
+                      source: knowledgemap
+                    - id: WA:KF:20fe3017a76e3278a7db1536c828578ac6c7ee00c5673ab6b7f9aa4ab4008ce9
+                      subject:
+                        concept: policy
+                        value: Gold
+                        dataType: string
+                      relationship: covers
+                      object:
+                        concept: loss
+                        value: theft
+                        dataType: string
+                      certainty: 100
+                      source: knowledgemap
+                    - id: WA:KF:3b7376bf9bdb32ed34d5db22446e1caac24e2e01ec40c8109da4a8f1caaa84de
+                      subject:
+                        concept: policy
+                        value: Gold
+                        dataType: string
+                      relationship: covers
+                      object:
+                        concept: loss
+                        value: cosmetic damage
+                        dataType: string
+                      certainty: 100
+                      source: knowledgemap
+                    - id: WA:KF:53631b77fa95c17a3594e6b5ee981a799f9407eff49035618356069fe89a649c
+                      subject:
+                        concept: policy
+                        value: Bronze
+                        dataType: string
+                      relationship: covers
+                      object:
+                        concept: loss
+                        value: theft
+                        dataType: string
+                      certainty: 100
+                      source: knowledgemap
+                    - id: WA:KF:64db85bb754f28152769e3e17717481430c97d00b7e4e572392baadf4768b323
+                      subject:
+                        concept: policy
+                        value: Silver
+                        dataType: string
+                      relationship: covers
+                      object:
+                        concept: loss
+                        value: loss
+                        dataType: string
+                      certainty: 100
+                      source: knowledgemap
+                    - id: WA:KF:7467c2c1c00149ac477f0246173ef9cb19d08243624b52ddf8a7e05791cd5550
+                      subject:
+                        concept: policy
+                        value: Gold
+                        dataType: string
+                      relationship: covers
+                      object:
+                        concept: loss
+                        value: water damage
+                        dataType: string
+                      certainty: 100
+                      source: knowledgemap
+                    - id: WA:KF:84c82731f08934d032f1ac266429af478ba87d9506c12b046a0b20dfec9cd7d8
+                      subject:
+                        concept: policy
+                        value: Silver
+                        dataType: string
+                      relationship: covers
+                      object:
+                        concept: loss
+                        value: theft
+                        dataType: string
+                      certainty: 100
+                      source: knowledgemap
+                    - id: WA:KF:97f21c32abbbddd8afd663f52156644a5430e30c4c0d1c706cb45e084ae51387
+                      subject:
+                        concept: policy
+                        value: Silver
+                        dataType: string
+                      relationship: covers
+                      object:
+                        concept: loss
+                        value: water damage
+                        dataType: string
+                      certainty: 100
+                      source: knowledgemap
+                    - id: WA:KF:9e098f7f383cc73640bba6c64eba58d418f7d105c5c3acdb2d93e537d8a565b2
+                      subject:
+                        concept: policy
+                        value: Gold
+                        dataType: string
+                      relationship: covers
+                      object:
+                        concept: loss
+                        value: loss
+                        dataType: string
+                      certainty: 100
+                      source: knowledgemap
+                    - id: WA:KF:3217c7d1fcf90c0a7240dde69c272aefd2c0789899a96f316c3155ea9eb87e73
+                      subject:
+                        concept: policy
+                        value: Gold
+                        dataType: string
+                      relationship: insures
+                      object:
+                        concept: equipment
+                        value: watch
+                        dataType: string
+                      certainty: 100
+                      source: knowledgemap
+                    - id: WA:KF:44ce5682c59be7ce0fa79302fa93882ffd3619ee679295da573d5f83d794efdd
+                      subject:
+                        concept: policy
+                        value: Silver
+                        dataType: string
+                      relationship: insures
+                      object:
+                        concept: equipment
+                        value: mobile phone
+                        dataType: string
+                      certainty: 100
+                      source: knowledgemap
+                    - id: WA:KF:6c7461b128a372d953e05a267cb147aefc99aed9cbc0a93e548209a309d5aa94
+                      subject:
+                        concept: policy
+                        value: Bronze
+                        dataType: string
+                      relationship: insures
+                      object:
+                        concept: equipment
+                        value: mobile phone
+                        dataType: string
+                      certainty: 100
+                      source: knowledgemap
+                    - id: WA:KF:cd6f7c3c351be83ef7fe2785b825795a7773b93ea8e2cf88ecd1d98b3e203d03
+                      subject:
+                        concept: policy
+                        value: Gold
+                        dataType: string
+                      relationship: insures
+                      object:
+                        concept: equipment
+                        value: camera
+                        dataType: string
+                      certainty: 100
+                      source: knowledgemap
+                    - id: WA:KF:e7d09ecad1b4a85827986df356d9a46d2acbb088e89eecc70c39e7b10db52703
+                      subject:
+                        concept: policy
+                        value: Silver
+                        dataType: string
+                      relationship: insures
+                      object:
+                        concept: equipment
+                        value: camera
+                        dataType: string
+                      certainty: 100
+                      source: knowledgemap
+                    - id: WA:KF:ec6e5652be4a48515d68c795b0497e87d6beeb83a384c4ae11ca562c6ba0e499
+                      subject:
+                        concept: policy
+                        value: Gold
+                        dataType: string
+                      relationship: insures
+                      object:
+                        concept: equipment
+                        value: mobile phone
+                        dataType: string
+                      certainty: 100
+                      source: knowledgemap
+                    - id: WA:KF:2e0d4a73a2c4b84c869bc30a0272c4fe688a6f9cb11e6a15bb359c61c656930f
+                      subject:
+                        concept: policy
+                        value: Bronze
+                        dataType: string
+                      relationship: provides
+                      object:
+                        concept: claim
+                        value: refurbished replacement
+                        dataType: string
+                      certainty: 100
+                      source: knowledgemap
+                    - id: WA:KF:4b70bdeea6c9b5eb9e05c1af00b307abf470877616fc3aea38c4b89767df5df4
+                      subject:
+                        concept: policy
+                        value: Gold
+                        dataType: string
+                      relationship: provides
+                      object:
+                        concept: claim
+                        value: new replacement
+                        dataType: string
+                      certainty: 100
+                      source: knowledgemap
+                    - id: WA:KF:a79b86eb3455a4b6e67f25031ccd9d3f99f2080dc0f7f35635c2e039241c83ca
+                      subject:
+                        concept: policy
+                        value: Silver
+                        dataType: string
+                      relationship: provides
+                      object:
+                        concept: claim
+                        value: repair
+                        dataType: string
+                      certainty: 100
+                      source: knowledgemap
+                    - id: WA:KF:bbaad63878c311e18b96b6ada8f7cf2a3f1d41623edc6257f9a10ca1de74186a
+                      subject:
+                        concept: policy
+                        value: Silver
+                        dataType: string
+                      relationship: provides
+                      object:
+                        concept: claim
+                        value: refurbished replacement
+                        dataType: string
+                      certainty: 100
+                      source: knowledgemap
+                    - id: WA:KF:c2a63a881f856798e2df8999d7b7956bc28dd50e8e99d6728ca46730955263c1
+                      subject:
+                        concept: policy
+                        value: Gold
+                        dataType: string
+                      relationship: provides
+                      object:
+                        concept: claim
+                        value: repair
+                        dataType: string
+                      certainty: 100
+                      source: knowledgemap
+                    local:
+                    - id: WA:RF:63bc5b884a9256bebd30fa0cd35c3735e8de61f7e34b7859cc9289f1349058ed
+                      subject:
+                        concept: policy holder
+                        value: Ben
+                        dataType: string
+                      relationship: can claim
+                      object:
+                        concept: claim
+                        value: new replacement
+                        dataType: string
+                      certainty: 97
+                      source: rule
+                    - id: WA:RF:82a7b990eb2fe491389f37de10b1cd752cbd692b8c2c0d3fb36b354491f68173
+                      subject:
+                        concept: policy holder
+                        value: Ben
+                        dataType: string
+                      relationship: can claim
+                      object:
+                        concept: claim
+                        value: repair
+                        dataType: string
+                      certainty: 100
+                      source: rule
+                    - id: WA:AF:c6a366105ea7691fffae2e75fe27293bd66b4155d352213cee51368272af07b6
+                      subject:
+                        concept: loss
+                        value: water damage
+                        dataType: string
+                      relationship: happened to
+                      object:
+                        concept: equipment
+                        value: mobile phone
+                        dataType: string
+                      certainty: 100
+                      source: answer
+                    - id: WA:IF:af4d81cc4d1175c0c488d6632599f718520366541ce99e61fc83eff7f640749a
+                      subject:
+                        concept: policy holder
+                        value: Ben
+                        dataType: string
+                      relationship: holds
+                      object:
+                        concept: policy
+                        value: Gold
+                        dataType: string
+                      certainty: 100
+                      source: injection
+                    - id: WA:AF:82b2bc07382e0372685aa06e30b1c9db95ccc30051cfc2ea3de4c2e7fc69d0c6
+                      subject:
+                        concept: policy holder
+                        value: Ben
+                        dataType: string
+                      relationship: suffered
+                      object:
+                        concept: loss
+                        value: water damage
+                        dataType: string
+                      certainty: 100
+                      source: answer
+                    context: []
+  /nl/explain:
+    post:
+      summary: Explain (BETA) - Returns a natural language explanation of the evidence tree
+      description: 'Get a natural language explanation of the chain of reasoning for any given fact.
+
+        '
+      tags:
+      - Evidence
+      operationId: explain
+      requestBody:
+        description: Language, factID, and sessionID for natural language processing
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                language:
+                  type: string
+                  description: The users preferred language setting i.e. "en", "za"
+                sessionID:
+                  type: string
+                  description: The session ID needed to access that specific session
+                factID:
+                  type: string
+                  description: The ID of a fact specific to that session to retrieve data from
+              required:
+              - language
+              - sessionID
+              - factID
+            example:
+              language: en
+              sessionID: bdef015c-0ab4-417c-982f-b8d9ff48efc1
+              factID: WA:RF:e1d3a2380a814cea00d5a1adf69b2cdafba0e0228192cd8014400925bb4422ea
+      security:
+      - apiKey: []
+      parameters:
+      - $ref: '#/components/parameters/NLVersion'
+      responses:
+        '200':
+          description: Response to the language
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  explanation:
+                    type: string
+                    description: The natural language representation of the fact evidence being queried
+                  error:
+                    $ref: '#/components/schemas/NLError'
+                  metadata:
+                    $ref: '#/components/schemas/NLMetadata'
+              example:
+                explanation: "Based on the information provided, Ben can claim for a repair. This decision is supported by several key facts:\n\nBen holds a Gold policy, which provides comprehensive coverage for his mobile phone. The Gold policy specifically covers water damage, which is the type of loss Ben has suffered. \n\nThe incident in question involves water damage to Ben's mobile phone. This aligns with the coverage provided by his Gold policy, as the policy explicitly insures mobile phones and covers water damage.\n\nIn response to this type of loss, a repair claim is deemed appropriate. The Gold policy includes provisions for repair claims, making this a suitable course of action for addressing the water damage to Ben's mobile phone.\n\nAll of these factors come together to support the conclusion that Ben is eligible to claim for a repair of his water-damaged mobile phone under his Gold policy."
+                metadata:
+                  querySubmittedAt: '2025-07-10T11:16:12.597111859Z'
+                  languageEngineResponseTime: 5538
+                  llmTokens:
+                    completionTokens: 174
+                    promptTokens: 726
+                    totalTokens: 900
+                  apiVersion: ''
+                  endpoint: explain
+                  sessionID: bdef015c-0ab4-417c-982f-b8d9ff48efc1
+components:
+  schemas:
+    Certainty:
+      description: How certain this fact or answer is
+      type: number
+      minimum: 1
+      maximum: 100
+    NLMetadata:
+      description: Metadata for the natural language endpoints
+      type: object
+      properties:
+        querySubmittedAt:
+          type: string
+          format: date-time
+          description: Timestamp when the query was submitted
+        languageEngineResponseTime:
+          type: integer
+          description: Response time of the language engine in milliseconds
+        llmTokens:
+          type: object
+          description: Token information from the LLM response
+          properties:
+            completionTokens:
+              type: integer
+              description: Number of completion tokens
+            promptTokens:
+              type: integer
+              description: Number of prompt tokens
+            totalTokens:
+              type: integer
+              description: Total number of tokens
+        apiVersion:
+          type: string
+          description: Version of the API
+        endpoint:
+          type: string
+          description: Name of the endpoint
+        sessionID:
+          type: string
+          description: Session ID of the session
+    InteractionEventStart:
+      description: Start event retrieved via the interaction log
+      type: object
+      properties:
+        start:
+          type: object
+          properties:
+            useDraft:
+              type: boolean
+              description: 'Whether the current draft of the knowledge map is being used
+
+                '
+            kmVersion:
+              type: string
+              description: 'ID of the version being queried, which will be different to the knowledge map ID when querying live versions of a knowledge map
+
+                '
+            sessionID:
+              type: string
+              description: The sessionID the interaction log is based on
+    Alt:
+      description: Alternative Text for the condition displayed in the Evidence Tree
+      type: string
+    InteractionEventInject:
+      description: Inject event retrieved via the interaction log
+      type: object
+      properties:
+        facts:
+          type: array
+          items:
+            type: object
+            properties:
+              subject:
+                $ref: '#/components/schemas/Subject'
+              relationship:
+                $ref: '#/components/schemas/Relationship'
+              object:
+                $ref: '#/components/schemas/Object'
+              certainty:
+                $ref: '#/components/schemas/Certainty'
+    Subject:
+      description: The subject side concept instance or value
+      type: string
+    Prompt:
+      description: User interaction required for further processing
+      type: string
+    InteractionEventResults:
+      description: Results event retrieved via the interaction log
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            type: object
+            properties:
+              subject:
+                $ref: '#/components/schemas/Subject'
+              relationship:
+                $ref: '#/components/schemas/Relationship'
+              object:
+                $ref: '#/components/schemas/Object'
+              certainty:
+                $ref: '#/components/schemas/Certainty'
+    Impact:
+      description: The impact this condition has on the result as a percentage
+      type: number
+    Object:
+      description: The object side concept instance or value
+      oneOf:
+      - type: string
+      - type: number
+      - type: boolean
+    InteractionEventQuery:
+      description: Query event retrieved via the interaction log
+      type: object
+      properties:
+        query:
+          type: object
+          properties:
+            subject:
+              $ref: '#/components/schemas/Subject'
+            relationship:
+              $ref: '#/components/schemas/Relationship'
+            object:
+              $ref: '#/components/schemas/Object'
+    Relationship:
+      description: The relationship between subject and object
+      type: string
+    InteractionEventDatasource:
+      description: Datasource event retrieved via the interaction log
+      type: object
+      properties:
+        datasources:
+          type: array
+          items:
+            type: object
+            properties:
+              relationship:
+                $ref: '#/components/schemas/Relationship'
+              certainty:
+                $ref: '#/components/schemas/Certainty'
+    InteractionEventQuestions:
+      description: Questions event retrieved via the interaction log
+      type: object
+      properties:
+        questions:
+          type: array
+          items:
+            type: object
+            properties:
+              subject:
+                $ref: '#/components/schemas/Subject'
+              relationship:
+                $ref: '#/components/schemas/Relationship'
+              object:
+                $ref: '#/components/schemas/Object'
+              prompt:
+                $ref: '#/components/schemas/Prompt'
+    Salience:
+      description: The weight of a condition
+      type: number
+      minimum: 1
+      maximum: 100
+    InteractionEventAnswers:
+      description: Answers event retrieved via the interaction log
+      type: object
+      properties:
+        answers:
+          type: array
+          items:
+            type: object
+            properties:
+              subject:
+                $ref: '#/components/schemas/Subject'
+              relationship:
+                $ref: '#/components/schemas/Relationship'
+              object:
+                $ref: '#/components/schemas/Object'
+              certainty:
+                $ref: '#/components/schemas/Certainty'
+    NLError:
+      description: Error for the natural language endpoints
+      type: object
+      properties:
+        code:
+          type: integer
+          description: An internal error code.
+        message:
+          type: string
+          description: A description of the error.
+        suggestedChatResponse:
+          type: string
+          description: A recommended message for chat-based clients to show the user. This message is designed to be user-friendly and assumes no knowledge of Rainbird.
+        statusCode:
+          type: string
+          description: The HTTP status code of the response.
+    WasMet:
+      description: Whether the expression returned true or false when not assigned to a variable. Always returns true when assigned to a variable
+      type: boolean
+  parameters:
+    NLVersion:
+      name: Version
+      in: header
+      description: Version of the natural language API
+      required: true
+      schema:
+        type: string
+        default: v1
+  securitySchemes:
+    apiKey:
+      description: "Authentication with the Rainbird API uses a user key, passed in the header. This can be found on the Account page or with the controls for [publishing a Knowledge Map](https://docs.rainbird.ai/rainbird/knowledge-modelling/publishing-your-km/api-management).  \n\nOur legacy authentication method of HTTP BasicAuth continues to be supported, but we highly advise transitioning to the new method.\n"
+      in: header
+      name: X-API-Key
+      type: apiKey
+    evidenceKey:
+      description: To access secured evidence, you should pass your evidence key
+      in: header
+      name: x-evidence-key
+      type: apiKey
+    interactionKey:
+      description: To access secured interaction logs, you should pass your interaction key
+      in: header
+      name: x-interaction-key
+      type: apiKey
