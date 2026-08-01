@@ -1,0 +1,25 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.rainbird.ai/rainbird/developer-docs/api-guide/error-codes
+format: http-status
+notes: >-
+  Rainbird uses standard HTTP status codes rather than RFC 9457 problem+json. The
+  OpenAPI documents only 200 responses; this catalog is captured from the docs
+  Error codes reference. HTTP 200 indicates success; HTTP 50x indicates a server-side
+  failure (contact support if persistent).
+problems:
+- status: 400
+  title: Bad request
+  meaning: Your request is missing a required parameter.
+- status: 401
+  title: Unauthorized
+  meaning: Your API key is invalid.
+- status: 403
+  title: Forbidden
+  meaning: Your API key does not permit access to the resource.
+- status: 404
+  title: Not found
+  meaning: The resource (session, KM etc.) could not be found.
+- status: 50x
+  title: Server error
+  meaning: Something failed server-side. Contact Rainbird if HTTP 50x errors persist.

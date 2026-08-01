@@ -1,0 +1,39 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.rainbird.ai/rainbird/developer-docs/api-guide
+notes: >-
+  Cross-cutting request/response semantics for the Rainbird Decisions API, captured
+  from the developer docs and derived from the OpenAPI. Rainbird is a stateful,
+  session-oriented decision API (start -> inject -> query -> response), not a
+  paginated CRUD API.
+authentication:
+  style: api-key-header
+  header: X-API-Key
+  secondary_headers: [x-evidence-key, x-interaction-key]
+  legacy: HTTP BasicAuth (supported, deprecated)
+  ref: authentication/rainbird-technologies-authentication.yml
+idempotency:
+  supported: false
+  notes: No idempotency-key header or parameter is documented. Sessions are created
+    per start call and expire 24h after last update.
+pagination:
+  supported: false
+  notes: No pagination surface; responses are session/decision payloads.
+session:
+  model: server-side session
+  identifier: sessionID (returned by GET /start/{kmID})
+  retention: Sessions are deleted 24 hours after they were last updated; evidence
+    is retained for the data-retention period.
+versioning:
+  style: engine-semver
+  api_doc_version: 1.2.0
+  ref: lifecycle/rainbird-technologies-lifecycle.yml
+error_envelope:
+  style: http-status-codes
+  ref: errors/rainbird-technologies-problem-types.yml
+  notes: Standard HTTP status codes (400/401/403/404, 50x); no problem+json envelope.
+rate_limiting:
+  documented: false
+metadata:
+  supported: true
+  notes: Queries and injected facts support metadata objects (see spec schemas).

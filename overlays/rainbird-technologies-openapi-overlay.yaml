@@ -1,0 +1,16 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Rainbird API
+  version: 1.0.0
+extends: openapi/rainbird-technologies-openapi-original.json
+actions:
+- target: $.info
+  update:
+    x-apievangelist-enriched: '2026-07-20'
+    x-apievangelist-provider: rainbird-technologies
+    x-api-style: session-oriented-decision-api
+- target: $.info
+  update:
+    x-error-catalog: errors/rainbird-technologies-problem-types.yml
+    x-conventions: conventions/rainbird-technologies-conventions.yml
+    x-lifecycle: lifecycle/rainbird-technologies-lifecycle.yml

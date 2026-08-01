@@ -1,0 +1,43 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/rainbird-technologies-openapi-original.json
+notes: >-
+  Entity graph derived from the OpenAPI component schemas of the Rainbird Decisions
+  API. The domain is a symbolic-reasoning knowledge graph: a Session runs against a
+  Knowledge Map, a Query produces Questions and Facts, and each Fact carries Evidence
+  (subject/relationship/object triples).
+entities:
+- name: KnowledgeMap
+  id_field: kmID
+  description: A published Rainbird knowledge model queried via GET /start/{kmID}.
+- name: Session
+  id_field: sessionID
+  description: A stateful reasoning session created from a Knowledge Map; expires 24h after last update.
+  relationships:
+  - {type: belongs_to, target: KnowledgeMap, via: kmID}
+- name: Query
+  description: A question posed to the session (concept/relationship/subject).
+  relationships:
+  - {type: belongs_to, target: Session, via: sessionID}
+  - {type: has_many, target: Question}
+  - {type: has_many, target: Fact}
+- name: Question
+  description: A question Rainbird asks the caller to resolve a query.
+  relationships:
+  - {type: has_many, target: Prompt, via: prompts}
+- name: Fact
+  description: A subject-relationship-object triple with certainty produced or injected into a session.
+  relationships:
+  - {type: has_one, target: Subject, via: subject}
+  - {type: has_one, target: Relationship, via: relationship}
+  - {type: has_one, target: Object, via: object}
+  - {type: has_one, target: FactSource, via: source}
+- name: Evidence
+  description: The reasoning chain for a fact, retrieved via GET /analysis/evidence/{factID}/{sessionID}.
+  relationships:
+  - {type: belongs_to, target: Fact, via: factID}
+  - {type: belongs_to, target: Session, via: sessionID}
+- name: Interaction
+  description: Interaction-log event for a session (start/query/inject/answers/results).
+  relationships:
+  - {type: belongs_to, target: Session, via: sessionID}

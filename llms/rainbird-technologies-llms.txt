@@ -1,0 +1,96 @@
+# Rainbird
+
+## Rainbird
+
+- [What is Rainbird?](https://docs.rainbird.ai/rainbird/getting-started/readme.md)
+- [How does Rainbird work?](https://docs.rainbird.ai/rainbird/getting-started/how-does-rainbird-work.md)
+- [Example use cases](https://docs.rainbird.ai/rainbird/getting-started/use-cases.md): Get inspired with examples of Rainbird-powered solutions
+- [Investment suitability assessment](https://docs.rainbird.ai/rainbird/getting-started/use-cases/investment-suitability-assessment.md)
+- [Digital tax consultant](https://docs.rainbird.ai/rainbird/getting-started/use-cases/digital-tax-consultant.md)
+- [Covid risk assessment](https://docs.rainbird.ai/rainbird/getting-started/use-cases/covid-risk-assessment.md)
+- [Insurance claims liability](https://docs.rainbird.ai/rainbird/getting-started/use-cases/insurance-claims-liability.md)
+- [Fraud identification](https://docs.rainbird.ai/rainbird/getting-started/use-cases/fraud-identification.md)
+- [Hosting options](https://docs.rainbird.ai/rainbird/getting-started/hosting-options.md): Differences between Community, Enterprise and self-hosting options.
+- [Quickstart guide](https://docs.rainbird.ai/rainbird/getting-started/quickstart-guide.md): Building your first knowledge map in Rainbird
+- [Onboarding with Rainbird](https://docs.rainbird.ai/rainbird/getting-started/not-started-onboarding-with-rainbird.md)
+- [What is knowledge modelling?](https://docs.rainbird.ai/rainbird/knowledge-modelling/overview.md)
+- [What is a query?](https://docs.rainbird.ai/rainbird/knowledge-modelling/what-is-a-query.md)
+- [Modelling](https://docs.rainbird.ai/rainbird/knowledge-modelling/modelling-features.md)
+- [Concepts](https://docs.rainbird.ai/rainbird/knowledge-modelling/modelling-features/concepts.md)
+- [Concept instances](https://docs.rainbird.ai/rainbird/knowledge-modelling/modelling-features/concepts/concept-instances.md)
+- [Relationships](https://docs.rainbird.ai/rainbird/knowledge-modelling/modelling-features/relationships.md)
+- [Question Configuration](https://docs.rainbird.ai/rainbird/knowledge-modelling/modelling-features/relationships/question-configuration.md)
+- [Rules](https://docs.rainbird.ai/rainbird/knowledge-modelling/modelling-features/relationships/rules.md)
+- [Match, Infer, Ask process](https://docs.rainbird.ai/rainbird/knowledge-modelling/modelling-features/relationships/rules/match-infer-ask-process.md)
+- [Expressions List](https://docs.rainbird.ai/rainbird/knowledge-modelling/modelling-features/relationships/rules/expressions-list.md)
+- [regexCount Guide](https://docs.rainbird.ai/rainbird/knowledge-modelling/modelling-features/relationships/rules/expressions-list/regexcount-guide.md)
+- [Facts](https://docs.rainbird.ai/rainbird/knowledge-modelling/modelling-features/facts.md)
+- [Datasources](https://docs.rainbird.ai/rainbird/knowledge-modelling/modelling-features/datasources.md)
+- [Other features](https://docs.rainbird.ai/rainbird/knowledge-modelling/modelling-features/other-features.md)
+- [Markdown](https://docs.rainbird.ai/rainbird/knowledge-modelling/modelling-features/other-features/markdown.md)
+- [Import/Export Knowledge Maps](https://docs.rainbird.ai/rainbird/knowledge-modelling/modelling-features/other-features/import-export-knowledge-maps.md)
+- [Troubleshooting Tips](https://docs.rainbird.ai/rainbird/knowledge-modelling/modelling-features/troubleshooting-tips.md)
+- [Building with Co-author](https://docs.rainbird.ai/rainbird/knowledge-modelling/modelling-features/building-with-co-author.md)
+- [Consult](https://docs.rainbird.ai/rainbird/knowledge-modelling/modelling-features/building-with-co-author/consult.md): Automated knowledge elicitation (BETA)
+- [RBlang reference](https://docs.rainbird.ai/rainbird/knowledge-modelling/modelling-features/rblang-reference.md)
+- [XML structure and namespaces](https://docs.rainbird.ai/rainbird/knowledge-modelling/modelling-features/rblang-reference/xml-structure-and-namespaces.md)
+- [Concepts, relationships, and instances](https://docs.rainbird.ai/rainbird/knowledge-modelling/modelling-features/rblang-reference/concepts-relationships-and-instances.md): Define valid data types, relationships, facts, and instances in RBlang.
+- [Rules and expressions](https://docs.rainbird.ai/rainbird/knowledge-modelling/modelling-features/rblang-reference/rules-and-expressions.md): Write valid inference rules, conditions, variables, and expressions in RBlang.
+- [Functions reference](https://docs.rainbird.ai/rainbird/knowledge-modelling/modelling-features/rblang-reference/functions-reference.md): Comparison, string, math, date, list, and logical functions available in RBlang expressions.
+- [Datasources reference](https://docs.rainbird.ai/rainbird/knowledge-modelling/modelling-features/rblang-reference/datasources-reference.md): Define datasource elements, inputs, request bodies, headers, and response mappings in RBlang.
+- [Validation checklist and examples](https://docs.rainbird.ai/rainbird/knowledge-modelling/modelling-features/rblang-reference/validation-checklist-and-examples.md): Validate RBlang output and use known-good patterns when writing knowledge maps.
+- [Testing](https://docs.rainbird.ai/rainbird/knowledge-modelling/testing-your-km.md)
+- [Manual tests](https://docs.rainbird.ai/rainbird/knowledge-modelling/testing-your-km/quick-query.md)
+- [NL test agent](https://docs.rainbird.ai/rainbird/knowledge-modelling/testing-your-km/nl-test-agent.md)
+- [Automated tests](https://docs.rainbird.ai/rainbird/knowledge-modelling/testing-your-km/automated-tests.md)
+- [External User Acceptance Testing (UAT)](https://docs.rainbird.ai/rainbird/knowledge-modelling/testing-your-km/external-user-acceptance-testing-uat.md)
+- [Versioning](https://docs.rainbird.ai/rainbird/knowledge-modelling/versioning.md)
+- [Publishing](https://docs.rainbird.ai/rainbird/knowledge-modelling/publishing-your-km.md)
+- [API Management](https://docs.rainbird.ai/rainbird/knowledge-modelling/publishing-your-km/api-management.md)
+- [Setting a live version](https://docs.rainbird.ai/rainbird/knowledge-modelling/publishing-your-km/setting-a-live-version.md)
+- [Publishing an agent](https://docs.rainbird.ai/rainbird/knowledge-modelling/publishing-your-km/publishing-an-agent.md)
+- [Stats and Reporting](https://docs.rainbird.ai/rainbird/knowledge-modelling/stats-and-reporting.md)
+- [Managing your data](https://docs.rainbird.ai/rainbird/knowledge-modelling/managing-your-data.md)
+- [The library](https://docs.rainbird.ai/rainbird/knowledge-modelling/the-library.md)
+- [How to: update a template](https://docs.rainbird.ai/rainbird/knowledge-modelling/the-library/how-to-update-a-template.md): Learn how to transform a library template to a different use case
+- [Technical specifications](https://docs.rainbird.ai/rainbird/knowledge-modelling/technical-specifications.md)
+- [What is evidence?](https://docs.rainbird.ai/rainbird/evidence/what-is-evidence.md)
+- [The Evidence Tree](https://docs.rainbird.ai/rainbird/evidence/the-evidence-tree.md)
+- [The Salience Chart](https://docs.rainbird.ai/rainbird/evidence/the-evidence-tree/the-salience-chart.md): Showing the impact of each condition on the certainty
+- [Overview](https://docs.rainbird.ai/rainbird/developer-docs/overview.md): Welcome to the Rainbird Developer Docs
+- [API Guides](https://docs.rainbird.ai/rainbird/developer-docs/api-guide.md)
+- [API request flow](https://docs.rainbird.ai/rainbird/developer-docs/api-guide/api-request-flow.md)
+- [Example API requests](https://docs.rainbird.ai/rainbird/developer-docs/api-guide/example-api-requests.md)
+- [Environments](https://docs.rainbird.ai/rainbird/developer-docs/api-guide/environments.md)
+- [Error codes](https://docs.rainbird.ai/rainbird/developer-docs/api-guide/error-codes.md)
+- [Skipping an answer to a question](https://docs.rainbird.ai/rainbird/developer-docs/api-guide/skipping-an-answer-to-a-question.md)
+- [Retrieving a full Evidence Tree for use with a custom UI or application](https://docs.rainbird.ai/rainbird/developer-docs/api-guide/retrieving-a-full-evidence-tree-for-use-with-a-custom-ui-or-application.md)
+- [Building an Evidence Tree URL](https://docs.rainbird.ai/rainbird/developer-docs/api-guide/building-an-evidence-tree-url.md)
+- [Beta APIs](https://docs.rainbird.ai/rainbird/developer-docs/api-guide/beta-apis.md)
+- [/interact](https://docs.rainbird.ai/rainbird/developer-docs/api-guide/beta-apis/interact.md)
+- [/explain](https://docs.rainbird.ai/rainbird/developer-docs/api-guide/beta-apis/explain.md)
+- [API Reference](https://docs.rainbird.ai/rainbird/developer-docs/api-reference.md)
+- [Decisions](https://docs.rainbird.ai/rainbird/developer-docs/api-reference/decisions.md)
+- [Evidence](https://docs.rainbird.ai/rainbird/developer-docs/api-reference/evidence.md)
+- [Platform](https://docs.rainbird.ai/rainbird/developer-docs/api-reference/platform.md)
+- [SDKs](https://docs.rainbird.ai/rainbird/developer-docs/sdks.md)
+- [Overview](https://docs.rainbird.ai/rainbird/rainbird-labs/overview.md)
+- [Change log](https://docs.rainbird.ai/rainbird/whats-new/change-log.md)
+- [Named Rules](https://docs.rainbird.ai/rainbird/whats-new/named-rules.md)
+- [New expressions](https://docs.rainbird.ai/rainbird/whats-new/new-expressions.md)
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information, you can query the documentation dynamically by asking a question.
+Perform an HTTP GET request on a page URL with the `ask` query parameter:
+```
+GET https://docs.rainbird.ai/rainbird/getting-started/readme.md?ask=<question>
+```
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

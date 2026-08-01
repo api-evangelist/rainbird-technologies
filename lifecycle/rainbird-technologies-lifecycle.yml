@@ -1,0 +1,25 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.rainbird.ai/rainbird/whats-new/change-log
+versioning:
+  scheme: engine-semver
+  current: 4.106.0
+  api_doc_version: 1.2.0
+  docs: https://docs.rainbird.ai/rainbird/whats-new/change-log
+  notes: >-
+    The Rainbird engine is versioned with semantic version numbers (e.g. 4.106.0)
+    released to Community Edition first, then Enterprise Edition roughly one week
+    later. The API reference document itself carries version 1.2.0. The API is not
+    URI-versioned.
+deprecation:
+  policy_url: null
+  sunset_header: false
+  notes: >-
+    Legacy HTTP BasicAuth is documented as still supported but deprecated in favor
+    of the X-API-Key header. Sessions are automatically deleted 24 hours after last
+    update. No formal RFC 8594 Sunset/Deprecation header policy is published.
+sla:
+  url: null
+  uptime_target: null
+status_page: null
+deprecated_operations: []

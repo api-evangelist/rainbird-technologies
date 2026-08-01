@@ -1,0 +1,39 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.rainbird.ai/rainbird/whats-new/change-log
+scheme: engine-semver
+current: 4.106.0
+notes: >-
+  Rainbird publishes a dated change log. Versions are released to Community Edition
+  first, then Enterprise Edition roughly one week later. Recent window captured below.
+entries:
+- version: 4.106.0
+  community_date: '2026-03-05'
+  enterprise_date: '2026-03-12'
+  breaking: false
+  highlights:
+  - Generated knowledge graphs gain additional question configuration for a better query experience.
+  - Clearer error messages when generating a graph from documentation fails.
+  - UX enhancements for Generate from Docs and Co-author.
+  - Fixed cancelling of a generate-from-documentation request.
+- version: 4.105.0
+  community_date: '2026-02-19'
+  enterprise_date: '2026-02-26'
+  breaking: false
+  highlights:
+  - Upload documents directly into Co-author for refinement and iteration.
+  - Graph-from-documentation prompt/docs now handed to Co-author, easing follow-up changes.
+- version: 4.104.0
+  community_date: '2026-02-05'
+  enterprise_date: '2026-02-12'
+  breaking: false
+  highlights:
+  - Co-author conversation history can now be cleared.
+  - Expandable QuickQuery panel for long questions and large metadata.
+  - Automated tester shows better inject errors.
+- version: 4.103.0
+  community_date: '2026-01-22'
+  enterprise_date: '2026-01-29'
+  breaking: false
+  highlights:
+  - Ongoing knowledge-modelling and tooling improvements.

@@ -1,0 +1,18 @@
+{
+  "provider": "rainbird-technologies",
+  "sources": [
+    "rainbird-technologies-decisions-api-openapi.yml",
+    "rainbird-technologies-evidence-api-openapi.yml",
+    "rainbird-technologies-platform-api-openapi.yml"
+  ],
+  "outputs": [
+    "rainbird-technologies-decisions-api-openapi.yml",
+    "rainbird-technologies-evidence-api-openapi.yml",
+    "rainbird-technologies-platform-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

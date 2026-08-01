@@ -1,0 +1,42 @@
+generated: '2026-07-20'
+method: derived
+status: candidate
+source: openapi/rainbird-technologies-openapi-original.json
+notes: No official hosted/remote Rainbird MCP server was found in the docs, npm (@modelcontextprotocol), or public MCP registries. This is a DERIVED candidate tool list, one tool per OpenAPI operation, to seed a future MCP server.
+server:
+  name: rainbird
+  transport: http
+tools:
+- name: start_session
+  description: Start a decision session against a published Knowledge Map.
+  source_operation: openapi/rainbird-technologies-openapi-original.json#start
+- name: inject_facts
+  description: Inject available facts into an active session.
+  source_operation: openapi/rainbird-technologies-openapi-original.json#inject
+- name: query
+  description: Run a query against the Knowledge Map for the session.
+  source_operation: openapi/rainbird-technologies-openapi-original.json#query
+- name: respond
+  description: Provide a response to a question raised by a query.
+  source_operation: openapi/rainbird-technologies-openapi-original.json#response
+- name: undo
+  description: Undo the most recent answer in the session.
+  source_operation: openapi/rainbird-technologies-openapi-original.json#undo
+- name: nl_interact
+  description: Natural-language interaction with a Knowledge Map (beta).
+  source_operation: openapi/rainbird-technologies-openapi-original.json#interact
+- name: get_evidence
+  description: Retrieve the evidence/reasoning chain for a fact.
+  source_operation: openapi/rainbird-technologies-openapi-original.json#evidence
+- name: get_interactions
+  description: Retrieve the interaction log for a session.
+  source_operation: openapi/rainbird-technologies-openapi-original.json#interactions
+- name: get_session
+  description: Retrieve session information.
+  source_operation: openapi/rainbird-technologies-openapi-original.json#session
+- name: nl_explain
+  description: Natural-language explanation of a decision (beta).
+  source_operation: openapi/rainbird-technologies-openapi-original.json#explain
+- name: get_version
+  description: Return the Rainbird engine version.
+  source_operation: openapi/rainbird-technologies-openapi-original.json#version

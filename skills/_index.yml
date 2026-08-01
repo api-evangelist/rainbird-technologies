@@ -1,0 +1,12 @@
+generated: '2026-07-20'
+method: generated
+source: openapi/rainbird-technologies-openapi-original.json
+skills:
+- file: rainbird-technologies-run-a-decision.md
+  name: Run a Rainbird decision
+  api: openapi/rainbird-technologies-openapi-original.json
+  operations: [start, inject, query, response]
+- file: rainbird-technologies-explain-a-decision.md
+  name: Explain a Rainbird decision
+  api: openapi/rainbird-technologies-openapi-original.json
+  operations: [evidence, interactions, session]

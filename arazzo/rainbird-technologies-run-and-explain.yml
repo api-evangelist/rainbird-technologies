@@ -1,0 +1,44 @@
+arazzo: 1.0.1
+info:
+  title: Rainbird — run a decision and fetch its evidence
+  version: 1.0.0
+  summary: Start a session against a Knowledge Map, run a query, then retrieve the evidence chain behind the result.
+sourceDescriptions:
+- name: rainbird
+  url: ../openapi/rainbird-technologies-openapi-original.json
+  type: openapi
+workflows:
+- workflowId: runDecisionAndExplain
+  summary: Query a Knowledge Map and audit the resulting decision.
+  description: Starts a Rainbird session, runs a query, and pulls the evidence chain for a returned fact.
+  inputs:
+    type: object
+    required: [kmID, apiKey]
+    properties:
+      kmID: {type: string, description: The published Knowledge Map ID}
+      apiKey: {type: string, description: Rainbird X-API-Key}
+      queryBody: {type: object, description: The query payload (concept/relationship/subject)}
+      factID: {type: string, description: A fact ID returned by the query to explain}
+  steps:
+  - stepId: startSession
+    operationId: start
+    parameters:
+    - {name: kmID, in: path, value: $inputs.kmID}
+    - {name: X-API-Key, in: header, value: $inputs.apiKey}
+    outputs:
+      sessionID: $response.body#/sessionID
+  - stepId: runQuery
+    operationId: query
+    parameters:
+    - {name: sessionID, in: path, value: $steps.startSession.outputs.sessionID}
+    - {name: X-API-Key, in: header, value: $inputs.apiKey}
+    requestBody:
+      payload: $inputs.queryBody
+  - stepId: getEvidence
+    operationId: evidence
+    parameters:
+    - {name: sessionID, in: path, value: $steps.startSession.outputs.sessionID}
+    - {name: factID, in: path, value: $inputs.factID}
+    - {name: X-API-Key, in: header, value: $inputs.apiKey}
+  outputs:
+    sessionID: $steps.startSession.outputs.sessionID

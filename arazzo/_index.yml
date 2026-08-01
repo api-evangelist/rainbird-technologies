@@ -1,0 +1,8 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/rainbird-technologies-openapi-original.json
+workflows:
+- file: rainbird-technologies-run-and-explain.yml
+  workflowId: runDecisionAndExplain
+  title: Run a decision and fetch its evidence
+  summary: Start a session against a Knowledge Map, run a query, then retrieve the evidence chain behind the result.

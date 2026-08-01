@@ -1,8 +1,28 @@
 aid: rainbird-technologies
 name: Rainbird Technologies
-description: Rainbird Technologies is a company surfaced as a portfolio company of techstars and added
-  to the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment
-  pipeline.
+description: >-
+  Rainbird Technologies is an AI decision automation platform for regulated industries
+  (banking and finance, insurance, tax and audit, healthcare, and law). It turns
+  regulations, policies, and expert knowledge into deterministic, fully auditable
+  decision systems using symbolic reasoning over knowledge graphs (Knowledge Maps),
+  promising zero hallucinations and explainable, evidence-backed outcomes. The
+  Rainbird API lets developers query a published Knowledge Map by starting a session,
+  injecting known facts, running queries, answering the questions the engine asks,
+  and retrieving the evidence chain behind every decision. Community and Enterprise
+  hosting environments are offered, with first-party JavaScript/React and Go SDKs.
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://rainbird.ai/wp-content/uploads/2023/01/rainbird-logo.png
 url: https://raw.githubusercontent.com/api-evangelist/rainbird-technologies/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -12,15 +32,128 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-20'
 tags:
 - Company
-apis: []
+- Artificial Intelligence
+- Decision Automation
+- Knowledge Graph
+- Symbolic Reasoning
+- Explainable AI
+- Governance
+- RegTech
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+apis:
+- aid: rainbird-technologies:rainbird-technologies-decisions-api
+  name: Rainbird Technologies Decisions API
+  description: >-
+    Get decisions from your knowledge maps. **Start** a session, **inject** any available facts, run a
+    **query**, provide a **response** to any questions asked and **undo** your answers to give a different
+    response.<br><br> **Note:** query, response and undo endpoints can all return *either* a **questionResponse**
+    (the reasoning engine needs more information) *or* a **resultResponse** (the decision).<br><br> Alternatively
+    you can **interact** with the reasoning engine via natural language. This is in beta, is subject to
+    change and responses may vary due to natural language interpretation.
+  humanURL: https://docs.rainbird.ai/rainbird/developer-docs/overview
+  baseURL: https://api.rainbird.ai
+  tags:
+  - Decisions
+  properties:
+  - type: OpenAPI
+    url: openapi/rainbird-technologies-decisions-api-openapi.yml
+  - type: APIReference
+    url: https://rainbird.redoc.ly/
+- aid: rainbird-technologies:rainbird-technologies-evidence-api
+  name: Rainbird Technologies Evidence API
+  description: Access the facts, information and the chain of reasoning that led to a decision
+  humanURL: https://docs.rainbird.ai/rainbird/developer-docs/overview
+  baseURL: https://api.rainbird.ai
+  tags:
+  - Evidence
+  properties:
+  - type: OpenAPI
+    url: openapi/rainbird-technologies-evidence-api-openapi.yml
+  - type: APIReference
+    url: https://rainbird.redoc.ly/
+- aid: rainbird-technologies:rainbird-technologies-platform-api
+  name: Rainbird Technologies Platform API
+  description: Retrieve information about the Rainbird Platform itself.
+  humanURL: https://docs.rainbird.ai/rainbird/developer-docs/overview
+  baseURL: https://api.rainbird.ai
+  tags:
+  - Platform
+  properties:
+  - type: OpenAPI
+    url: openapi/rainbird-technologies-platform-api-openapi.yml
+  - type: APIReference
+    url: https://rainbird.redoc.ly/
 common:
+- type: DeveloperPortal
+  url: https://docs.rainbird.ai/rainbird/developer-docs/overview
+- type: Documentation
+  url: https://docs.rainbird.ai/
+- type: APIReference
+  url: https://rainbird.redoc.ly/
+- type: GettingStarted
+  url: https://docs.rainbird.ai/rainbird/getting-started/quickstart-guide
+- type: Blog
+  url: https://rainbird.ai/blog/
+- type: GitHubOrganization
+  url: https://github.com/RainBirdAi
+- type: SignUp
+  url: https://app.rainbird.ai/
+- type: Support
+  url: https://forum.rainbird.ai/
+- type: TermsOfService
+  url: https://rainbird.ai/terms-of-use/
+- type: PrivacyPolicy
+  url: https://rainbird.ai/privacy-policy/
+- type: ChangeLog
+  url: https://docs.rainbird.ai/rainbird/whats-new/change-log
+- type: OpenAPI
+  url: openapi/rainbird-technologies-openapi-original.json
+- type: Packages
+  url: packages/rainbird-technologies-packages.yml
+- type: SDKs
+  url: packages/rainbird-technologies-packages.yml
+- type: Components
+  url: components/rainbird-technologies-components.yml
+- type: Authentication
+  url: authentication/rainbird-technologies-authentication.yml
+- type: DomainSecurity
+  url: security/rainbird-technologies-domain-security.yml
+- type: MCPServer
+  url: mcp/rainbird-technologies-mcp.yml
+- type: LLMsTxt
+  url: llms/rainbird-technologies-llms.txt
+- type: Overlay
+  url: overlays/rainbird-technologies-openapi-overlay.yaml
+- type: Conformance
+  url: conformance/rainbird-technologies-conformance.yml
+- type: ErrorCatalog
+  url: errors/rainbird-technologies-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/rainbird-technologies-lifecycle.yml
+- type: Conventions
+  url: conventions/rainbird-technologies-conventions.yml
+- type: ChangeLog
+  url: changelog/rainbird-technologies-changelog.yml
+- type: DataModel
+  url: data-model/rainbird-technologies-data-model.yml
+- type: WellKnown
+  url: well-known/rainbird-technologies-well-known.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: Arazzo
+  name: Run a decision and fetch its evidence
+  url: arazzo/rainbird-technologies-run-and-explain.yml
 - type: Website
   url: https://rainbird.ai/
+x-enrichment:
+  date: '2026-07-20'
+  status: enriched
+  artifacts_added: 19
+  pass: local-v1

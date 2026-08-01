@@ -1,0 +1,39 @@
+generated: '2026-07-20'
+method: searched
+source: openapi/rainbird-technologies-openapi-original.json
+docs: https://docs.rainbird.ai/rainbird/knowledge-modelling/publishing-your-km/api-management
+notes: >-
+  Primary auth is the X-API-Key header (obtained from the KM Publish panel or Account
+  page). Evidence and interaction data require additional x-evidence-key / x-interaction-key
+  headers unless link-sharing is enabled. Legacy HTTP BasicAuth remains supported but deprecated.
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: apiKey
+  type: apiKey
+  in: header
+  parameter: X-API-Key
+  description: "Authentication with the Rainbird API uses a user key, passed in the header.\
+    \ This can be found on the Account page or with the controls for [publishing a Knowledge\
+    \ Map](https://docs.rainbird.ai/rainbird/knowledge-modelling/publishing-your-km/api-management).\
+    \  \n\nOur legacy authentication method of HTTP BasicAuth continues to be supported, but\
+    \ we highly advise transitioning to the new method."
+  sources:
+  - openapi/rainbird-technologies-openapi-original.json
+- name: evidenceKey
+  type: apiKey
+  in: header
+  parameter: x-evidence-key
+  description: To access secured evidence, you should pass your evidence key
+  sources:
+  - openapi/rainbird-technologies-openapi-original.json
+- name: interactionKey
+  type: apiKey
+  in: header
+  parameter: x-interaction-key
+  description: To access secured interaction logs, you should pass your interaction key
+  sources:
+  - openapi/rainbird-technologies-openapi-original.json

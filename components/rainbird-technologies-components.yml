@@ -1,0 +1,18 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.rainbird.ai/rainbird/developer-guides/sdks
+notes: >-
+  Rainbird ships client-side React UI component libraries for embedding decision
+  interactions in web applications. These are distinct from the base server-side
+  SDK catalogued in packages/.
+families:
+- name: React SDK
+  library: "@rainbird/sdk-react"
+  url: https://www.npmjs.com/package/@rainbird/sdk-react
+  description: React bindings/components that build on the base @rainbird/sdk to
+    drive interactive Rainbird query sessions in a React app.
+- name: React Material components
+  library: "@rainbird/sdk-react-material"
+  url: https://www.npmjs.com/package/@rainbird/sdk-react-material
+  description: Prebuilt Material UI components building on the base and React
+    packages to render questions and collect answers with minimal setup.

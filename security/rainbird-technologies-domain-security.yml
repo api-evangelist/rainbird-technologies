@@ -1,0 +1,26 @@
+generated: '2026-07-20'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: rainbird.ai
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 13 14:26:50 2026 GMT
+  hsts: false
+- host: api.rainbird.ai
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 22 23:04:44 2026 GMT
+  hsts: null
+- host: enterprise-api.rainbird.ai
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 29 23:23:28 2026 GMT
+  hsts: null
+domains:
+- domain: rainbird.ai
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: none

@@ -1,0 +1,27 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/rainbird-technologies-openapi-original.json
+notes: Cross-cutting standards conformance derived from the OpenAPI and developer docs.
+standards:
+- id: openapi-3.1
+  conforms: true
+  evidence: Provider publishes an OpenAPI 3.1.0 document (Rainbird API Documentation v1.2.0).
+- id: oauth2
+  conforms: false
+  evidence: Auth is API-key header (X-API-Key); no oauth2 securitySchemes.
+- id: oidc
+  conforms: false
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: Errors use plain HTTP status codes, not application/problem+json.
+- id: rfc8594-sunset-header
+  conforms: false
+  evidence: No Sunset/Deprecation header policy documented.
+- id: json-api
+  conforms: false
+- id: pagination
+  conforms: false
+  evidence: Session/decision API has no pagination surface.
+- id: idempotency
+  conforms: false
+  evidence: No idempotency-key contract documented.

@@ -1,0 +1,32 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.rainbird.ai/rainbird/developer-guides/sdks
+packages:
+- language: javascript
+  registry: npm
+  name: "@rainbird/sdk"
+  url: https://www.npmjs.com/package/@rainbird/sdk
+  install: npm install @rainbird/sdk
+  official: true
+  notes: Base JavaScript/TypeScript SDK for the Rainbird API.
+- language: javascript
+  registry: npm
+  name: "@rainbird/sdk-react"
+  url: https://www.npmjs.com/package/@rainbird/sdk-react
+  install: npm install @rainbird/sdk-react
+  official: true
+  notes: React bindings that build on the base SDK.
+- language: javascript
+  registry: npm
+  name: "@rainbird/sdk-react-material"
+  url: https://www.npmjs.com/package/@rainbird/sdk-react-material
+  install: npm install @rainbird/sdk-react-material
+  official: true
+  notes: Material UI components building on the base and React packages.
+- language: go
+  registry: pkg.go.dev
+  name: gitlab.com/rainbird-ai/sdk-go
+  url: https://pkg.go.dev/gitlab.com/rainbird-ai/sdk-go
+  install: go get gitlab.com/rainbird-ai/sdk-go
+  official: true
+  notes: First-party Go SDK maintained on GitLab.
