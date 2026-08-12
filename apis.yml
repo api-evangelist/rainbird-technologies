@@ -114,7 +114,7 @@ common:
 - type: ChangeLog
   url: https://docs.rainbird.ai/rainbird/whats-new/change-log
 - type: OpenAPI
-  url: openapi/rainbird-technologies-openapi-original.json
+  url: openapi/_original/rainbird-technologies-openapi-original.json
 - type: Packages
   url: packages/rainbird-technologies-packages.yml
 - type: SDKs
