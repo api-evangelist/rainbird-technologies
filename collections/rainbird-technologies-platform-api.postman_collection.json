@@ -1,0 +1,101 @@
+{
+  "item": [
+    {
+      "id": "3842b09a-1883-4087-8144-a8ba9e3f708a",
+      "name": "Platform",
+      "description": {
+        "content": "Retrieve information about the Rainbird Platform itself.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "71dc5ab9-8eb6-4b4d-ae63-8ade85fbbd51",
+          "name": "Version - Reports engine version",
+          "request": {
+            "name": "Version - Reports engine version",
+            "description": {},
+            "url": {
+              "path": [
+                "version"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "noauth"
+            }
+          },
+          "response": [
+            {
+              "id": "1f624b16-7799-42f4-a701-3fb0f3dfaa3a",
+              "name": "Engine version (semver)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "version"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "4.89.0",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.rainbird.ai",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "c78ab8d9-cae2-4de3-8062-7ee61294f4ce",
+    "name": "Rainbird API Documentation Decisions Platform API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Welcome to the Rainbird API documentation. It contains details of the API calls required to query a Knowledge Map and view evidence for the decisions returned. Knowledge Maps must first be created via the Rainbird Studio. More information on this can be found [here](https://docs.rainbird.ai/rainbird/knowledge-modelling/overview).\n\n# Authentication\n\n<!-- ReDoc-Inject: <security-definitions> -->",
+      "type": "text/plain"
+    }
+  }
+}

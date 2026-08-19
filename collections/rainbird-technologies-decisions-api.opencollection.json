@@ -1,0 +1,174 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Rainbird API Documentation Decisions API",
+    "version": "1.2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Decisions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Start - Start a new session",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rainbird.ai/start/:kmID",
+            "params": [
+              {
+                "name": "kmID",
+                "value": "",
+                "type": "path",
+                "description": "The knowledge map ID to start a session against"
+              },
+              {
+                "name": "useDraft",
+                "value": "",
+                "type": "query",
+                "description": "Flag to use the draft version of the knowledge map, cannot be used simultaneously with 'version' parameter"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "query",
+                "description": "Parameter to use a specific version of the map, cannot be used simultaneously with 'useDraft' parameter"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Start a session with the reasoning engine, specifying the knowledge map and (optionally) the version you require.<br><br> By default it will start a session using the live version. If no version has been set live it will default to the draft version.<br><br> Alternatively the query parameters “useDraft” or “version” can be used as an override to request either the draft or a specific version. We recommend using a new session for each query, unless you need to make multiple queries within the sam"
+        },
+        {
+          "info": {
+            "name": "Inject - Inject facts into a session",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rainbird.ai/:sessionID/inject",
+            "params": [
+              {
+                "name": "sessionID",
+                "value": "",
+                "type": "path",
+                "description": "The session to inject facts into"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Inject an array of facts as triples. For large requests we recommend injecting in batches of 250 facts."
+        },
+        {
+          "info": {
+            "name": "Query - Query a running session",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rainbird.ai/:sessionID/query",
+            "params": [
+              {
+                "name": "sessionID",
+                "value": "",
+                "type": "path",
+                "description": "The session to query against"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "A query is the method to get decisions from your knowledge map. You query a relationship in the knowledge map and provide either the subject, the object or both. More information can be found [here](https://docs.rainbird.ai/rainbird/developer-guides/api-guide/example-api-request-flow#query)."
+        },
+        {
+          "info": {
+            "name": "Response - Respond with an answer to a question",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rainbird.ai/:sessionID/response",
+            "params": [
+              {
+                "name": "sessionID",
+                "value": "",
+                "type": "path",
+                "description": "The session to send responses to"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "If you have received a questionResponse from the query, response or undo endpoints, you can submit an array of answers. These must be provided as triples.<br><br> **Note:** properties returned in the question object will determine how you can respond."
+        },
+        {
+          "info": {
+            "name": "Undo - Undoes the previous answer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rainbird.ai/:sessionID/undo",
+            "params": [
+              {
+                "name": "sessionID",
+                "value": "",
+                "type": "path",
+                "description": "The session to step back with an undo"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "A method to undo the previous answer array posted to the response endpoint. This rolls back the session, removing any facts inferred from the answer array and returns the original question. A different answer can be provided or undo can be used again to further roll-back the session.<br><br> **Note:** when there are no further answers to undo, the same question will be returned."
+        },
+        {
+          "info": {
+            "name": "Interact (BETA) - natural language injection, queries and question responses",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rainbird.ai/nl/interact",
+            "headers": [
+              {
+                "name": "Version",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Given a body of text, the endpoint will return a question, result or an error.\n\n### question\n\nIf a questionResponse is received, the question prompt can be displayed in a UI or used to embed and search a vector store to solicit an answer. The data containing the answer can be resubmitted in a new interact request, ensuring the same session ID is used. Please note: when a questionResponse has been received, the session is locked to the current query in progress. Therefore, if any additional reque"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

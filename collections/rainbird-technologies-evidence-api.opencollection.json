@@ -1,0 +1,131 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Rainbird API Documentation Decisions Evidence API",
+    "version": "1.2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Evidence",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Evidence - Returns the evidence for a given fact",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rainbird.ai/analysis/evidence/:factID/:sessionID",
+            "params": [
+              {
+                "name": "factID",
+                "value": "",
+                "type": "path",
+                "description": "The factID for which to retrieve evidence"
+              },
+              {
+                "name": "sessionID",
+                "value": "",
+                "type": "path",
+                "description": "The sessionID where the fact was created"
+              }
+            ]
+          },
+          "docs": "View the source of the fact, including how it was derived when inferred from a rule."
+        },
+        {
+          "info": {
+            "name": "Interaction Log - Retrieves interaction events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rainbird.ai/analysis/interactions/:sessionID",
+            "params": [
+              {
+                "name": "sessionID",
+                "value": "",
+                "type": "path",
+                "description": "The session id to access the interaction logs"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Format of the retrieved data. CSV or JSON"
+              }
+            ]
+          },
+          "docs": "View a log of interaction events within the session, including queries, injected facts, questions asked, answers given and results returned.<br><br> **Note:** interaction log recording is switched **off** by default. It must be enabled in the Studio per version per knowledge map. Only sessions started **after** it is enabled will be recorded."
+        },
+        {
+          "info": {
+            "name": "Session - Returns session information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rainbird.ai/analysis/session/:sessionID",
+            "params": [
+              {
+                "name": "sessionID",
+                "value": "",
+                "type": "path",
+                "description": "The sessionID of the session"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "The type of information requested."
+              },
+              {
+                "name": "relationships",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Access session information, such as all of the facts available within a session, or version information for the knowledge map used in a session."
+        },
+        {
+          "info": {
+            "name": "Explain (BETA) - Returns a natural language explanation of the evidence tree",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rainbird.ai/nl/explain",
+            "headers": [
+              {
+                "name": "Version",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get a natural language explanation of the chain of reasoning for any given fact.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

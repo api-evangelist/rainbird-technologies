@@ -1,0 +1,517 @@
+{
+  "item": [
+    {
+      "id": "ddf1c992-18b3-46ad-bf18-ddc2c127468f",
+      "name": "Evidence",
+      "description": {
+        "content": "Access the facts, information and the chain of reasoning that led to a decision\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "cbfa0f21-ff94-4da2-aa60-3bb77bf986d5",
+          "name": "Evidence - Returns the evidence for a given fact",
+          "request": {
+            "name": "Evidence - Returns the evidence for a given fact",
+            "description": {
+              "content": "View the source of the fact, including how it was derived when inferred from a rule.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "analysis",
+                "evidence",
+                ":factID",
+                ":sessionID"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "factID",
+                  "description": "(Required) The factID for which to retrieve evidence"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sessionID",
+                  "description": "(Required) The sessionID where the fact was created"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "noauth"
+            }
+          },
+          "response": [
+            {
+              "id": "525bcc44-6903-43fb-939e-a98c9f401deb",
+              "name": "Fact detail",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "analysis",
+                    "evidence",
+                    ":factID",
+                    ":sessionID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "factID",
+                      "description": "(Required) The factID for which to retrieve evidence"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sessionID",
+                      "description": "(Required) The sessionID where the fact was created"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"factID\": \"WA:RF:82a7b990eb2fe491389f37de10b1cd752cbd692b8c2c0d3fb36b354491f68173\",\n  \"source\": \"rule\",\n  \"fact\": {\n    \"subject\": {\n      \"type\": \"policy holder\",\n      \"value\": \"Ben\",\n      \"dataType\": \"string\"\n    },\n    \"relationship\": {\n      \"type\": \"can claim\"\n    },\n    \"object\": {\n      \"type\": \"claim\",\n      \"value\": \"repair\",\n      \"dataType\": \"string\"\n    },\n    \"certainty\": 100\n  },\n  \"time\": 1752142054143,\n  \"rule\": {\n    \"bindings\": {\n      \"EQUIPMENT\": \"mobile phone\",\n      \"LOSS\": \"water damage\",\n      \"O\": \"repair\",\n      \"POLICY\": \"Gold\",\n      \"S\": \"Ben\"\n    },\n    \"conditions\": [\n      {\n        \"certainty\": 100,\n        \"factID\": \"WA:IF:af4d81cc4d1175c0c488d6632599f718520366541ce99e61fc83eff7f640749a\",\n        \"factKey\": \"9c141933-344b-4d36-a3ef-ffdd96fbcb81\",\n        \"impact\": 14.29,\n        \"object\": \"Gold\",\n        \"objectType\": \"string\",\n        \"relationship\": \"holds\",\n        \"salience\": 100,\n        \"subject\": \"Ben\"\n      },\n      {\n        \"certainty\": 100,\n        \"factID\": \"WA:KF:c2a63a881f856798e2df8999d7b7956bc28dd50e8e99d6728ca46730955263c1\",\n        \"impact\": 14.29,\n        \"object\": \"repair\",\n        \"objectType\": \"string\",\n        \"relationship\": \"provides\",\n        \"salience\": 100,\n        \"subject\": \"Gold\"\n      },\n      {\n        \"certainty\": 100,\n        \"factID\": \"WA:AF:82b2bc07382e0372685aa06e30b1c9db95ccc30051cfc2ea3de4c2e7fc69d0c6\",\n        \"factKey\": \"04b02c60-73c1-436c-b0d3-1ee44df7c14b\",\n        \"impact\": 14.29,\n        \"object\": \"water damage\",\n        \"objectType\": \"string\",\n        \"relationship\": \"suffered\",\n        \"salience\": 100,\n        \"subject\": \"Ben\"\n      },\n      {\n        \"certainty\": 100,\n        \"factID\": \"WA:KF:cb08149770bded892f06d37433c305f4f4667837323167d21580b24de3a9c5dd\",\n        \"impact\": 14.29,\n        \"object\": \"water damage\",\n        \"objectType\": \"string\",\n        \"relationship\": \"appropriate for\",\n        \"salience\": 100,\n        \"subject\": \"repair\"\n      },\n      {\n        \"certainty\": 100,\n        \"factID\": \"WA:KF:ec6e5652be4a48515d68c795b0497e87d6beeb83a384c4ae11ca562c6ba0e499\",\n        \"impact\": 14.29,\n        \"object\": \"mobile phone\",\n        \"objectType\": \"string\",\n        \"relationship\": \"insures\",\n        \"salience\": 100,\n        \"subject\": \"Gold\"\n      },\n      {\n        \"certainty\": 100,\n        \"factID\": \"WA:AF:c6a366105ea7691fffae2e75fe27293bd66b4155d352213cee51368272af07b6\",\n        \"factKey\": \"22667649-4df6-4731-9498-e4eb9c25d22c\",\n        \"impact\": 14.29,\n        \"object\": \"mobile phone\",\n        \"objectType\": \"string\",\n        \"relationship\": \"happened to\",\n        \"salience\": 100,\n        \"subject\": \"water damage\"\n      },\n      {\n        \"certainty\": 100,\n        \"factID\": \"WA:KF:7467c2c1c00149ac477f0246173ef9cb19d08243624b52ddf8a7e05791cd5550\",\n        \"impact\": 14.29,\n        \"object\": \"water damage\",\n        \"objectType\": \"string\",\n        \"relationship\": \"covers\",\n        \"salience\": 100,\n        \"subject\": \"Gold\"\n      },\n      {\n        \"expression\": {\n          \"functions\": {\n            \"countRelationshipInstances( 'Ben', 'has previously claimed', *)\": {\n              \"facts\": [\n                {\n                  \"certainty\": 100,\n                  \"factID\": \"WA:AF:6ee11124ef7abd40707e1813a4d0b7851d86f1c36e42eaf3e559f02f441668e5\",\n                  \"factKey\": \"5a337648-3fa1-46ec-b67e-7f0aa5662863\",\n                  \"object\": \"laptop\",\n                  \"objectType\": \"string\",\n                  \"relationship\": \"has previously claimed\",\n                  \"subject\": \"Ben\"\n                },\n                {\n                  \"certainty\": 100,\n                  \"factID\": \"WA:AF:6ee11124ef7abd40707e1813a4d0b7851d86f1c36e42eaf3e559f02f441668e5\",\n                  \"factKey\": \"5a337648-3fa1-46ec-b67e-7f0aa5662863\",\n                  \"object\": \"headphones\",\n                  \"objectType\": \"string\",\n                  \"relationship\": \"has previously claimed\",\n                  \"subject\": \"Ben\"\n                },\n                {\n                  \"certainty\": 100,\n                  \"factID\": \"WA:AF:6ee11124ef7abd40707e1813a4d0b7851d86f1c36e42eaf3e559f02f441668e5\",\n                  \"factKey\": \"5a337648-3fa1-46ec-b67e-7f0aa5662863\",\n                  \"object\": \"bicycle\",\n                  \"objectType\": \"string\",\n                  \"relationship\": \"has previously claimed\",\n                  \"subject\": \"Ben\"\n                }\n              ],\n              \"result\": {\n                \"type\": \"number\",\n                \"value\": 3\n              }\n            }\n          },\n          \"text\": \"countRelationshipInstances( 'Ben', 'has previously claimed', *)\",\n          \"value\": \"%RELS\"\n        },\n        \"impact\": 14.29,\n        \"salience\": 100,\n        \"wasMet\": true\n      },\n      {\n        \"expression\": {\n          \"text\": \"%RELS is less than 10\",\n          \"value\": \"%O\"\n        },\n        \"impact\": 14.29,\n        \"salience\": 100,\n        \"wasMet\": true\n      }\n    ],\n    \"ruleMaxCertainty\": 100\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3cc3d1b5-17f1-4217-b3c9-b345e3d1894b",
+          "name": "Interaction Log - Retrieves interaction events",
+          "request": {
+            "name": "Interaction Log - Retrieves interaction events",
+            "description": {
+              "content": "View a log of interaction events within the session, including queries, injected facts, questions asked, answers given and results returned.<br><br> **Note:** interaction log recording is switched **off** by default. It must be enabled in the Studio per version per knowledge map. Only sessions started **after** it is enabled will be recorded.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "analysis",
+                "interactions",
+                ":sessionID"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "<string>",
+                  "description": "Format of the retrieved data. CSV or JSON"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sessionID",
+                  "description": "(Required) The session id to access the interaction logs"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "noauth"
+            }
+          },
+          "response": [
+            {
+              "id": "aeac8f5f-f41c-4468-8dc1-807e7aa2473a",
+              "name": "Interaction log detail",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "analysis",
+                    "interactions",
+                    ":sessionID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sessionID",
+                      "description": "(Required) The session id to access the interaction logs"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"values\": {\n      \"start\": {\n        \"useDraft\": false,\n        \"kmVersionID\": \"77135768-7634-49f0-9fbf-ed915ce08a66\",\n        \"sessionID\": \"c1bf18d7-d1f0-44bc-a639-8cd4ded56dce\"\n      }\n    },\n    \"event\": \"start\",\n    \"created\": \"2025-07-10T10:06:27.780Z\"\n  },\n  {\n    \"values\": {\n      \"facts\": [\n        {\n          \"subject\": \"Ben\",\n          \"object\": \"Gold\",\n          \"relationship\": \"holds\",\n          \"certainty\": 100\n        }\n      ]\n    },\n    \"event\": \"inject\",\n    \"created\": \"2025-07-10T10:06:37.987Z\"\n  },\n  {\n    \"values\": {\n      \"query\": {\n        \"subject\": \"Ben\",\n        \"relationship\": \"can claim\"\n      }\n    },\n    \"event\": \"query\",\n    \"created\": \"2025-07-10T10:06:44.532Z\"\n  },\n  {\n    \"values\": {\n      \"questions\": [\n        {\n          \"prompt\": \"What type of loss has Ben suffered?\",\n          \"relationship\": \"suffered\",\n          \"subject\": \"Ben\"\n        }\n      ]\n    },\n    \"event\": \"question\",\n    \"created\": \"2025-07-10T10:06:44.713Z\"\n  },\n  {\n    \"values\": {\n      \"answers\": [\n        {\n          \"subject\": \"Ben\",\n          \"object\": \"water damage\",\n          \"relationship\": \"suffered\",\n          \"certainty\": 100\n        }\n      ]\n    },\n    \"event\": \"answer\",\n    \"created\": \"2025-07-10T10:07:19.252Z\"\n  },\n  {\n    \"values\": {\n      \"questions\": [\n        {\n          \"prompt\": \"What item of equipment suffered water damage?\",\n          \"relationship\": \"happened to\",\n          \"subject\": \"water damage\"\n        }\n      ]\n    },\n    \"event\": \"question\",\n    \"created\": \"2025-07-10T10:07:19.523Z\"\n  },\n  {\n    \"values\": {\n      \"answers\": [\n        {\n          \"subject\": \"water damage\",\n          \"object\": \"mobile phone\",\n          \"relationship\": \"happened to\",\n          \"certainty\": 100\n        }\n      ]\n    },\n    \"event\": \"answer\",\n    \"created\": \"2025-07-10T10:07:34.098Z\"\n  },\n  {\n    \"values\": {\n      \"results\": [\n        {\n          \"subject\": \"Ben\",\n          \"object\": \"repair\",\n          \"relationship\": \"can claim\",\n          \"certainty\": 100\n        },\n        {\n          \"subject\": \"Ben\",\n          \"object\": \"new replacement\",\n          \"relationship\": \"can claim\",\n          \"certainty\": 97\n        }\n      ]\n    },\n    \"event\": \"result\",\n    \"created\": \"2025-07-10T10:07:34.276Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "aaca7fbe-b1f5-4f48-8c02-fa9cbb6c9834",
+          "name": "Session - Returns session information",
+          "request": {
+            "name": "Session - Returns session information",
+            "description": {
+              "content": "Access session information, such as all of the facts available within a session, or version information for the knowledge map used in a session.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "analysis",
+                "session",
+                ":sessionID"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "version",
+                  "description": "The type of information requested."
+                },
+                {
+                  "disabled": false,
+                  "key": "relationships",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "relationships",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sessionID",
+                  "description": "(Required) The sessionID of the session"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "889e7e69-fb1a-42a8-abac-ac244c9150a5",
+              "name": "Session detail",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "analysis",
+                    "session",
+                    ":sessionID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter",
+                      "value": "version"
+                    },
+                    {
+                      "key": "relationships",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "relationships",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sessionID",
+                      "description": "(Required) The sessionID of the session"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"km\": {\n    \"id\": \"77135768-7634-49f0-9fbf-ed915ce08a66\",\n    \"name\": \"Loss Assessment\",\n    \"versionID\": \"77135768-7634-49f0-9fbf-ed915ce08a66\",\n    \"versionCreated\": \"2025-07-09T14:27:22Z\",\n    \"versionStatus\": \"Draft\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "680c064e-7a9d-420e-b0d4-4ca915b0fb11",
+          "name": "Explain (BETA) - Returns a natural language explanation of the evidence tree",
+          "request": {
+            "name": "Explain (BETA) - Returns a natural language explanation of the evidence tree",
+            "description": {
+              "content": "Get a natural language explanation of the chain of reasoning for any given fact.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "nl",
+                "explain"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Version of the natural language API",
+                "key": "Version",
+                "value": "v1"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"language\": \"<string>\",\n  \"sessionID\": \"<string>\",\n  \"factID\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b5d33f9f-c336-4afc-bfa6-0fc19fddad1e",
+              "name": "Response to the language",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "nl",
+                    "explain"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Version of the natural language API",
+                    "key": "Version",
+                    "value": "v1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"language\": \"en\",\n  \"sessionID\": \"bdef015c-0ab4-417c-982f-b8d9ff48efc1\",\n  \"factID\": \"WA:RF:e1d3a2380a814cea00d5a1adf69b2cdafba0e0228192cd8014400925bb4422ea\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"explanation\": \"Based on the information provided, Ben can claim for a repair. This decision is supported by several key facts:\\n\\nBen holds a Gold policy, which provides comprehensive coverage for his mobile phone. The Gold policy specifically covers water damage, which is the type of loss Ben has suffered. \\n\\nThe incident in question involves water damage to Ben's mobile phone. This aligns with the coverage provided by his Gold policy, as the policy explicitly insures mobile phones and covers water damage.\\n\\nIn response to this type of loss, a repair claim is deemed appropriate. The Gold policy includes provisions for repair claims, making this a suitable course of action for addressing the water damage to Ben's mobile phone.\\n\\nAll of these factors come together to support the conclusion that Ben is eligible to claim for a repair of his water-damaged mobile phone under his Gold policy.\",\n  \"metadata\": {\n    \"querySubmittedAt\": \"2025-07-10T11:16:12.597111859Z\",\n    \"languageEngineResponseTime\": 5538,\n    \"llmTokens\": {\n      \"completionTokens\": 174,\n      \"promptTokens\": 726,\n      \"totalTokens\": 900\n    },\n    \"apiVersion\": \"\",\n    \"endpoint\": \"explain\",\n    \"sessionID\": \"bdef015c-0ab4-417c-982f-b8d9ff48efc1\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.rainbird.ai",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "53b350be-1696-4706-8817-1eeb82331d3c",
+    "name": "Rainbird API Documentation Decisions Evidence API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Welcome to the Rainbird API documentation. It contains details of the API calls required to query a Knowledge Map and view evidence for the decisions returned. Knowledge Maps must first be created via the Rainbird Studio. More information on this can be found [here](https://docs.rainbird.ai/rainbird/knowledge-modelling/overview).\n\n# Authentication\n\n<!-- ReDoc-Inject: <security-definitions> -->",
+      "type": "text/plain"
+    }
+  }
+}

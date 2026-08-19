@@ -1,0 +1,739 @@
+{
+  "item": [
+    {
+      "id": "cd417be0-0257-444d-a3d0-fad71ad22421",
+      "name": "Decisions",
+      "description": {
+        "content": "Get decisions from your knowledge maps. **Start** a session, **inject** any available facts, run a **query**, provide a **response** to any questions asked and **undo** your answers to give a different response.<br><br> **Note:** query, response and undo endpoints can all return *either* a **questionResponse** (the reasoning engine needs more information) *or* a **resultResponse** (the decision).<br><br> Alternatively you can **interact** with the reasoning engine via natural language. This is in beta, is subject to change and responses may vary due to natural language interpretation.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f4c7515f-8159-43c9-9a8c-43cb82883996",
+          "name": "Start - Start a new session",
+          "request": {
+            "name": "Start - Start a new session",
+            "description": {
+              "content": "Start a session with the reasoning engine, specifying the knowledge map and (optionally) the version you require.<br><br> By default it will start a session using the live version. If no version has been set live it will default to the draft version.<br><br> Alternatively the query parameters “useDraft” or “version” can be used as an override to request either the draft or a specific version. We recommend using a new session for each query, unless you need to make multiple queries within the same context.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "start",
+                ":kmID"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "useDraft",
+                  "value": "<boolean>",
+                  "description": "Flag to use the draft version of the knowledge map, cannot be used simultaneously with 'version' parameter"
+                },
+                {
+                  "disabled": false,
+                  "key": "version",
+                  "value": "<integer>",
+                  "description": "Parameter to use a specific version of the map, cannot be used simultaneously with 'useDraft' parameter"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "kmID",
+                  "description": "(Required) The knowledge map ID to start a session against"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "fefeda5a-832e-457c-b108-aca6b13752dd",
+              "name": "Session start information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "start",
+                    ":kmID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "useDraft",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "version",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "kmID",
+                      "description": "(Required) The knowledge map ID to start a session against"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"kmVersion\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c511990b-8137-4427-8b5f-a2712d04fd23",
+          "name": "Inject - Inject facts into a session",
+          "request": {
+            "name": "Inject - Inject facts into a session",
+            "description": {
+              "content": "Inject an array of facts as triples. For large requests we recommend injecting in batches of 250 facts.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":sessionID",
+                "inject"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sessionID",
+                  "description": "(Required) The session to inject facts into"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "noauth"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"subject\": \"<string>\",\n    \"relationship\": \"<string>\",\n    \"object\": \"<string>\",\n    \"certainty\": \"<number>\"\n  },\n  {\n    \"subject\": \"<string>\",\n    \"relationship\": \"<string>\",\n    \"object\": \"<string>\",\n    \"certainty\": \"<number>\"\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "faa76e7e-3c87-4326-9adc-3fac82d74ddd",
+              "name": "Facts were injected successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":sessionID",
+                    "inject"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sessionID",
+                      "description": "(Required) The session to inject facts into"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"subject\": \"Ben\",\n    \"relationship\": \"holds\",\n    \"object\": \"Gold\",\n    \"certainty\": 100\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": \"OK\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4fc24f12-70b7-46a5-b342-caa3151844ab",
+          "name": "Query - Query a running session",
+          "request": {
+            "name": "Query - Query a running session",
+            "description": {
+              "content": "A query is the method to get decisions from your knowledge map. You query a relationship in the knowledge map and provide either the subject, the object or both. More information can be found [here](https://docs.rainbird.ai/rainbird/developer-guides/api-guide/example-api-request-flow#query).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":sessionID",
+                "query"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sessionID",
+                  "description": "(Required) The session to query against"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "noauth"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"relationship\": \"<string>\",\n  \"subject\": \"<string>\",\n  \"object\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "40493e4e-9f84-407c-835d-efa85321b987",
+              "name": "An answer if one is reached, or a question",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":sessionID",
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sessionID",
+                      "description": "(Required) The session to query against"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"subject\": \"Ben\",\n  \"relationship\": \"can claim\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"question\": {\n    \"subject\": \"string\",\n    \"object\": \"string\",\n    \"objectType\": \"string\",\n    \"objectMetadata\": {\n      \"key_0\": true\n    },\n    \"dataType\": \"string\",\n    \"relationship\": \"string\",\n    \"type\": \"string\",\n    \"plural\": false,\n    \"allowCF\": false,\n    \"allowUnknown\": true,\n    \"canAdd\": false,\n    \"prompt\": \"string\",\n    \"concepts\": [\n      {\n        \"conceptType\": \"string\",\n        \"name\": \"string\",\n        \"type\": \"string\",\n        \"value\": \"string\",\n        \"invalidResponse\": true\n      },\n      {\n        \"conceptType\": \"string\",\n        \"name\": \"string\",\n        \"type\": \"string\",\n        \"value\": \"string\",\n        \"invalidResponse\": true\n      }\n    ]\n  },\n  \"sid\": \"c1bf18d7-d1f0-44bc-a639-8cd4ded56dce\",\n  \"stats\": {\n    \"key_0\": false,\n    \"key_1\": \"string\",\n    \"key_2\": \"string\",\n    \"key_3\": true,\n    \"key_4\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "073d4d6e-a2e5-4c54-afb4-941d221cb2f3",
+          "name": "Response - Respond with an answer to a question",
+          "request": {
+            "name": "Response - Respond with an answer to a question",
+            "description": {
+              "content": "If you have received a questionResponse from the query, response or undo endpoints, you can submit an array of answers. These must be provided as triples.<br><br> **Note:** properties returned in the question object will determine how you can respond.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":sessionID",
+                "response"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sessionID",
+                  "description": "(Required) The session to send responses to"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "noauth"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"answers\": [\n    {\n      \"subject\": \"<string>\",\n      \"relationship\": \"<string>\",\n      \"object\": \"<string>\",\n      \"certainty\": \"<number>\",\n      \"answer\": \"<string>\"\n    },\n    {\n      \"subject\": \"<string>\",\n      \"relationship\": \"<string>\",\n      \"object\": \"<string>\",\n      \"certainty\": \"<number>\",\n      \"answer\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2f8a65c2-fc1f-478a-90a3-221d882d79a3",
+              "name": "An answer if one is reached, or a question",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":sessionID",
+                    "response"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sessionID",
+                      "description": "(Required) The session to send responses to"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"answers\": [\n    {\n      \"subject\": \"string\",\n      \"relationship\": \"string\",\n      \"object\": \"string\",\n      \"certainty\": 16.126365227697484,\n      \"answer\": \"<string>\"\n    },\n    {\n      \"subject\": \"string\",\n      \"relationship\": \"string\",\n      \"object\": \"string\",\n      \"certainty\": 30.956041987676866,\n      \"answer\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"question\": {\n    \"subject\": \"string\",\n    \"object\": \"string\",\n    \"objectType\": \"string\",\n    \"objectMetadata\": {\n      \"key_0\": true\n    },\n    \"dataType\": \"string\",\n    \"relationship\": \"string\",\n    \"type\": \"string\",\n    \"plural\": false,\n    \"allowCF\": false,\n    \"allowUnknown\": true,\n    \"canAdd\": false,\n    \"prompt\": \"string\",\n    \"concepts\": [\n      {\n        \"conceptType\": \"string\",\n        \"name\": \"string\",\n        \"type\": \"string\",\n        \"value\": \"string\",\n        \"invalidResponse\": true\n      },\n      {\n        \"conceptType\": \"string\",\n        \"name\": \"string\",\n        \"type\": \"string\",\n        \"value\": \"string\",\n        \"invalidResponse\": true\n      }\n    ]\n  },\n  \"sid\": \"c1bf18d7-d1f0-44bc-a639-8cd4ded56dce\",\n  \"stats\": {\n    \"key_0\": false,\n    \"key_1\": \"string\",\n    \"key_2\": \"string\",\n    \"key_3\": true,\n    \"key_4\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "32bbd836-d1b8-4d99-82c8-b3edb89d8eae",
+          "name": "Undo - Undoes the previous answer",
+          "request": {
+            "name": "Undo - Undoes the previous answer",
+            "description": {
+              "content": "A method to undo the previous answer array posted to the response endpoint. This rolls back the session, removing any facts inferred from the answer array and returns the original question. A different answer can be provided or undo can be used again to further roll-back the session.<br><br> **Note:** when there are no further answers to undo, the same question will be returned.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":sessionID",
+                "undo"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sessionID",
+                  "description": "(Required) The session to step back with an undo"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "noauth"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a9be12f5-f7c5-4a11-82b4-31f29a5dbc15",
+              "name": "Session stepped back to a previous question or result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":sessionID",
+                    "undo"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sessionID",
+                      "description": "(Required) The session to step back with an undo"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"question\": {\n    \"subject\": \"string\",\n    \"object\": \"string\",\n    \"objectType\": \"string\",\n    \"objectMetadata\": {\n      \"key_0\": true\n    },\n    \"dataType\": \"string\",\n    \"relationship\": \"string\",\n    \"type\": \"string\",\n    \"plural\": false,\n    \"allowCF\": false,\n    \"allowUnknown\": true,\n    \"canAdd\": false,\n    \"prompt\": \"string\",\n    \"concepts\": [\n      {\n        \"conceptType\": \"string\",\n        \"name\": \"string\",\n        \"type\": \"string\",\n        \"value\": \"string\",\n        \"invalidResponse\": true\n      },\n      {\n        \"conceptType\": \"string\",\n        \"name\": \"string\",\n        \"type\": \"string\",\n        \"value\": \"string\",\n        \"invalidResponse\": true\n      }\n    ]\n  },\n  \"sid\": \"c1bf18d7-d1f0-44bc-a639-8cd4ded56dce\",\n  \"stats\": {\n    \"key_0\": false,\n    \"key_1\": \"string\",\n    \"key_2\": \"string\",\n    \"key_3\": true,\n    \"key_4\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7c36a611-7a05-46f4-9d77-ddbe44a8f83d",
+          "name": "Interact (BETA) - natural language injection, queries and question responses",
+          "request": {
+            "name": "Interact (BETA) - natural language injection, queries and question responses",
+            "description": {
+              "content": "Given a body of text, the endpoint will return a question, result or an error.\n\n### question\n\nIf a questionResponse is received, the question prompt can be displayed in a UI or used to embed and search a vector store to solicit an answer. The data containing the answer can be resubmitted in a new interact request, ensuring the same session ID is used. Please note: when a questionResponse has been received, the session is locked to the current query in progress. Therefore, if any additional requests contain a new question asked to Rainbird, the new question will be ignored until a result is received.\n\n### result\n\nIf a resultResponse is received, this contains the answer to the user's original question and can be presented as required. Once a resultResponse is received, the session is unlocked and further queries can be made in that session.\n\n### error\n\nIf an error response is received, this may be due to an internal error, but it can also be caused by such things as not being able to detect the query, the question being asked in an unfamiliar way, or the knowledge map not being designed to answer it. A suggested error response is included that can be used in chat interfaces. Alternatively, the error code can be mapped to your own custom error messages.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "nl",
+                "interact"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Version of the natural language API",
+                "key": "Version",
+                "value": "v1"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sessionID\": \"<string>\",\n  \"userPrompt\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8bf39c42-646e-4f58-b7d3-f2664e99e1bc",
+              "name": "Response to the user prompt",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "nl",
+                    "interact"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Version of the natural language API",
+                    "key": "Version",
+                    "value": "v1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sessionID\": \"bdef015c-0ab4-417c-982f-b8d9ff48efc1\",\n  \"userPrompt\": \"Can Ben claim?\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"responseType\": \"question\",\n  \"facts\": {},\n  \"metadata\": {\n    \"querySubmittedAt\": \"2025-07-10T10:49:13.231973361Z\",\n    \"languageEngineResponseTime\": 2173,\n    \"llmTokens\": {\n      \"completionTokens\": 52,\n      \"promptTokens\": 3117,\n      \"totalTokens\": 3169\n    },\n    \"apiVersion\": \"\",\n    \"endpoint\": \"interact\",\n    \"sessionID\": \"bdef015c-0ab4-417c-982f-b8d9ff48efc1\"\n  },\n  \"query\": {\n    \"subject\": \"Ben\",\n    \"relationship\": \"can claim\",\n    \"object\": null\n  },\n  \"questions\": [\n    {\n      \"allowCF\": true,\n      \"canAdd\": true,\n      \"concepts\": [\n        {\n          \"conceptType\": \"policy\",\n          \"name\": \"Gold\",\n          \"type\": \"string\",\n          \"value\": \"Gold\"\n        },\n        {\n          \"conceptType\": \"policy\",\n          \"name\": \"Silver\",\n          \"type\": \"string\",\n          \"value\": \"Silver\"\n        },\n        {\n          \"conceptType\": \"policy\",\n          \"name\": \"Bronze\",\n          \"type\": \"string\",\n          \"value\": \"Bronze\"\n        }\n      ],\n      \"dataType\": \"string\",\n      \"prompt\": \"Which policy does Ben hold?\",\n      \"relationship\": \"holds\",\n      \"subject\": \"Ben\",\n      \"type\": \"Second Form Object\"\n    }\n  ],\n  \"results\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.rainbird.ai",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "64e572fa-2bdd-4355-ab88-aea49fd647e3",
+    "name": "Rainbird API Documentation Decisions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Welcome to the Rainbird API documentation. It contains details of the API calls required to query a Knowledge Map and view evidence for the decisions returned. Knowledge Maps must first be created via the Rainbird Studio. More information on this can be found [here](https://docs.rainbird.ai/rainbird/knowledge-modelling/overview).\n\n# Authentication\n\n<!-- ReDoc-Inject: <security-definitions> -->",
+      "type": "text/plain"
+    }
+  }
+}

@@ -2,7 +2,9 @@ generated: '2026-07-20'
 method: derived
 status: candidate
 source: openapi/rainbird-technologies-openapi-original.json
-notes: No official hosted/remote Rainbird MCP server was found in the docs, npm (@modelcontextprotocol), or public MCP registries. This is a DERIVED candidate tool list, one tool per OpenAPI operation, to seed a future MCP server.
+notes: No official hosted/remote Rainbird MCP server was found in the docs, npm (@modelcontextprotocol),
+  or public MCP registries. This is a DERIVED candidate tool list, one tool per OpenAPI operation, to
+  seed a future MCP server.
 server:
   name: rainbird
   transport: http
@@ -40,3 +42,9 @@ tools:
 - name: get_version
   description: Return the Rainbird engine version.
   source_operation: openapi/rainbird-technologies-openapi-original.json#version
+deployment:
+  mode: none
+  verified: derived
+  tools: 11
+  checked: '2026-08-12'
+  source: catalog MCP census

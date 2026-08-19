@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Rainbird API Documentation Decisions Platform API",
+    "version": "1.2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Platform",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Version - Reports engine version",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rainbird.ai/version"
+          },
+          "docs": "Version - Reports engine version"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
