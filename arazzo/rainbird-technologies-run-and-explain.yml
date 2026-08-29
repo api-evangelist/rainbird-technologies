@@ -4,8 +4,11 @@ info:
   version: 1.0.0
   summary: Start a session against a Knowledge Map, run a query, then retrieve the evidence chain behind the result.
 sourceDescriptions:
-- name: rainbird
-  url: ../openapi/rainbird-technologies-openapi-original.json
+- name: decisionsApi
+  url: ../openapi/rainbird-technologies-decisions-api-openapi.yml
+  type: openapi
+- name: evidenceApi
+  url: ../openapi/rainbird-technologies-evidence-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: runDecisionAndExplain
