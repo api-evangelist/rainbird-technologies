@@ -1,14 +1,14 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Rainbird API Documentation Decisions API
   version: 1.2.0
-  description: 'Welcome to the Rainbird API documentation. It contains details of the API calls required to query a Knowledge Map and view evidence for the decisions returned. Knowledge Maps must first be created via the Rainbird Studio. More information on this can be found [here](https://docs.rainbird.ai/rainbird/knowledge-modelling/overview).
+  description: 'Welcome to the Rainbird API documentation. It contains details of the API calls required to query a Knowledge Map and view evidence for the decisions returned. Knowledge Maps must first be created via the Rainbird Studio. More information on this can be found here.
 
 
     # Authentication
 
 
-    <!-- ReDoc-Inject: <security-definitions> -->'
+    -->'
 servers:
 - url: https://api.rainbird.ai
   description: Rainbird Community Environment
@@ -16,14 +16,20 @@ servers:
   description: Rainbird Enterprise Environment
 tags:
 - name: Decisions
-  description: Get decisions from your knowledge maps. **Start** a session, **inject** any available facts, run a **query**, provide a **response** to any questions asked and **undo** your answers to give a different response.<br><br> **Note:** query, response and undo endpoints can all return *either* a **questionResponse** (the reasoning engine needs more information) *or* a **resultResponse** (the decision).<br><br> Alternatively you can **interact** with the reasoning engine via natural language. This is in beta, is subject to change and responses may vary due to natural language interpretation.
+  description: Get decisions from your knowledge maps.
 paths:
   /start/{kmID}:
     get:
       summary: Start - Start a new session
       tags:
       - Decisions
-      description: Start a session with the reasoning engine, specifying the knowledge map and (optionally) the version you require.<br><br> By default it will start a session using the live version. If no version has been set live it will default to the draft version.<br><br> Alternatively the query parameters “useDraft” or “version” can be used as an override to request either the draft or a specific version. We recommend using a new session for each query, unless you need to make multiple queries within the same context.
+      description: 'Start a session with the reasoning engine, specifying the knowledge map and (optionally) the version you require.
+
+
+        By default it will start a session using the live version. If no version has been set live it will default to the draft version.
+
+
+        Alternatively the query parameters “useDraft” or “version” can be used as an override to request either the draft or a specific version. We recommend using a new session for each query, unless you need to make multiple queries within the same context.'
       operationId: start
       parameters:
       - in: path
@@ -130,7 +136,7 @@ paths:
       summary: Query - Query a running session
       tags:
       - Decisions
-      description: A query is the method to get decisions from your knowledge map. You query a relationship in the knowledge map and provide either the subject, the object or both. More information can be found [here](https://docs.rainbird.ai/rainbird/developer-guides/api-guide/example-api-request-flow#query).
+      description: A query is the method to get decisions from your knowledge map. You query a relationship in the knowledge map and provide either the subject, the object or both. More information can be found here.
       operationId: query
       security:
       - {}
@@ -174,7 +180,10 @@ paths:
       summary: Response - Respond with an answer to a question
       tags:
       - Decisions
-      description: If you have received a questionResponse from the query, response or undo endpoints, you can submit an array of answers. These must be provided as triples.<br><br> **Note:** properties returned in the question object will determine how you can respond.
+      description: 'If you have received a questionResponse from the query, response or undo endpoints, you can submit an array of answers. These must be provided as triples.
+
+
+        **Note:** properties returned in the question object will determine how you can respond.'
       operationId: response
       security:
       - {}
@@ -234,7 +243,10 @@ paths:
   /{sessionID}/undo:
     post:
       summary: Undo - Undoes the previous answer
-      description: A method to undo the previous answer array posted to the response endpoint. This rolls back the session, removing any facts inferred from the answer array and returns the original question. A different answer can be provided or undo can be used again to further roll-back the session.<br><br> **Note:** when there are no further answers to undo, the same question will be returned.
+      description: 'A method to undo the previous answer array posted to the response endpoint. This rolls back the session, removing any facts inferred from the answer array and returns the original question. A different answer can be provided or undo can be used again to further roll-back the session.
+
+
+        **Note:** when there are no further answers to undo, the same question will be returned.'
       tags:
       - Decisions
       operationId: undo
@@ -286,9 +298,7 @@ paths:
         ### error
 
 
-        If an error response is received, this may be due to an internal error, but it can also be caused by such things as not being able to detect the query, the question being asked in an unfamiliar way, or the knowledge map not being designed to answer it. A suggested error response is included that can be used in chat interfaces. Alternatively, the error code can be mapped to your own custom error messages.
-
-        '
+        If an error response is received, this may be due to an internal error, but it can also be caused by such things as not being able to detect the query, the question being asked in an unfamiliar way, or the knowledge map not being designed to answer it. A suggested error response is included that can be used in chat interfaces. Alternatively, the error code can be mapped to your own custom error messages.'
       tags:
       - Decisions
       operationId: interact
@@ -523,53 +533,9 @@ paths:
                       relationship: can claim
 components:
   schemas:
-    Question:
-      type: object
-      description: A question object that needs a response
-      properties:
-        subject:
-          type: string
-        object:
-          type: string
-        objectType:
-          type: string
-        objectMetadata:
-          type: object
-          additionalProperties: true
-          description: If it exists the object side meta
-        dataType:
-          type: string
-        relationship:
-          type: string
-        type:
-          type: string
-        plural:
-          type: boolean
-        allowCF:
-          type: boolean
-        allowUnknown:
-          type: boolean
-        canAdd:
-          $ref: '#/components/schemas/CanAdd'
-        prompt:
-          $ref: '#/components/schemas/Prompt'
-        knownAnswers:
-          $ref: '#/components/schemas/KnownAnswers'
-        concepts:
-          type: array
-          items:
-            type: object
-            properties:
-              conceptType:
-                type: string
-              name:
-                type: string
-              type:
-                type: string
-              value:
-                type: string
-              invalidResponse:
-                type: boolean
+    KnownAnswers:
+      description: An array of objects that have been answered
+      type: array
     QuestionResponse:
       description: A question the engine wants answered
       type: object
@@ -621,69 +587,6 @@ components:
             type: string
             value: theft
         sid: c1bf18d7-d1f0-44bc-a639-8cd4ded56dce
-    Object:
-      description: The object side concept instance or value
-      oneOf:
-      - type: string
-      - type: number
-      - type: boolean
-    Certainty:
-      description: How certain this fact or answer is
-      type: number
-      minimum: 1
-      maximum: 100
-    NLError:
-      description: Error for the natural language endpoints
-      type: object
-      properties:
-        code:
-          type: integer
-          description: An internal error code.
-        message:
-          type: string
-          description: A description of the error.
-        suggestedChatResponse:
-          type: string
-          description: A recommended message for chat-based clients to show the user. This message is designed to be user-friendly and assumes no knowledge of Rainbird.
-        statusCode:
-          type: string
-          description: The HTTP status code of the response.
-    NLMetadata:
-      description: Metadata for the natural language endpoints
-      type: object
-      properties:
-        querySubmittedAt:
-          type: string
-          format: date-time
-          description: Timestamp when the query was submitted
-        languageEngineResponseTime:
-          type: integer
-          description: Response time of the language engine in milliseconds
-        llmTokens:
-          type: object
-          description: Token information from the LLM response
-          properties:
-            completionTokens:
-              type: integer
-              description: Number of completion tokens
-            promptTokens:
-              type: integer
-              description: Number of prompt tokens
-            totalTokens:
-              type: integer
-              description: Total number of tokens
-        apiVersion:
-          type: string
-          description: Version of the API
-        endpoint:
-          type: string
-          description: Name of the endpoint
-        sessionID:
-          type: string
-          description: Session ID of the session
-    Relationship:
-      description: The relationship between subject and object
-      type: string
     ResultResponse:
       description: The engine is providing results
       type: object
@@ -747,18 +650,125 @@ components:
           objectMetadata: {}
         queryProfile: []
         sid: c1bf18d7-d1f0-44bc-a639-8cd4ded56dce
-    Subject:
-      description: The subject side concept instance or value
+    Certainty:
+      description: How certain this fact or answer is
+      type: number
+      minimum: 1
+      maximum: 100
+    Object:
+      description: The object side concept instance or value
+      oneOf:
+      - type: string
+      - type: number
+      - type: boolean
+    Relationship:
+      description: The relationship between subject and object
       type: string
+    Question:
+      type: object
+      description: A question object that needs a response
+      properties:
+        subject:
+          type: string
+        object:
+          type: string
+        objectType:
+          type: string
+        objectMetadata:
+          type: object
+          additionalProperties: true
+          description: If it exists the object side meta
+        dataType:
+          type: string
+        relationship:
+          type: string
+        type:
+          type: string
+        plural:
+          type: boolean
+        allowCF:
+          type: boolean
+        allowUnknown:
+          type: boolean
+        canAdd:
+          $ref: '#/components/schemas/CanAdd'
+        prompt:
+          $ref: '#/components/schemas/Prompt'
+        knownAnswers:
+          $ref: '#/components/schemas/KnownAnswers'
+        concepts:
+          type: array
+          items:
+            type: object
+            properties:
+              conceptType:
+                type: string
+              name:
+                type: string
+              type:
+                type: string
+              value:
+                type: string
+              invalidResponse:
+                type: boolean
     Prompt:
       description: User interaction required for further processing
+      type: string
+    Subject:
+      description: The subject side concept instance or value
       type: string
     CanAdd:
       description: Whether further objects can be added to the query
       type: boolean
-    KnownAnswers:
-      description: An array of objects that have been answered
-      type: array
+    NLMetadata:
+      description: Metadata for the natural language endpoints
+      type: object
+      properties:
+        querySubmittedAt:
+          type: string
+          format: date-time
+          description: Timestamp when the query was submitted
+        languageEngineResponseTime:
+          type: integer
+          description: Response time of the language engine in milliseconds
+        llmTokens:
+          type: object
+          description: Token information from the LLM response
+          properties:
+            completionTokens:
+              type: integer
+              description: Number of completion tokens
+            promptTokens:
+              type: integer
+              description: Number of prompt tokens
+            totalTokens:
+              type: integer
+              description: Total number of tokens
+        apiVersion:
+          type: string
+          description: Version of the API
+        endpoint:
+          type: string
+          description: Name of the endpoint
+        sessionID:
+          type: string
+          description: Session ID of the session
+    NLError:
+      description: Error for the natural language endpoints
+      type: object
+      properties:
+        code:
+          type: integer
+          description: An internal error code.
+        message:
+          type: string
+          description: A description of the error.
+        suggestedChatResponse:
+          type: string
+          description: A recommended message for chat-based clients to show the user. This message is designed to be user-friendly and assumes no knowledge of Rainbird.
+        statusCode:
+          type: string
+          description: The HTTP status code of the response.
   parameters:
     NLVersion:
       name: Version
