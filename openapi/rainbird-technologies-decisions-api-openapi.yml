@@ -533,6 +533,119 @@ paths:
                       relationship: can claim
 components:
   schemas:
+    Certainty:
+      description: How certain this fact or answer is
+      type: number
+      minimum: 1
+      maximum: 100
+    Question:
+      type: object
+      description: A question object that needs a response
+      properties:
+        subject:
+          type: string
+        object:
+          type: string
+        objectType:
+          type: string
+        objectMetadata:
+          type: object
+          additionalProperties: true
+          description: If it exists the object side meta
+        dataType:
+          type: string
+        relationship:
+          type: string
+        type:
+          type: string
+        plural:
+          type: boolean
+        allowCF:
+          type: boolean
+        allowUnknown:
+          type: boolean
+        canAdd:
+          $ref: '#/components/schemas/CanAdd'
+        prompt:
+          $ref: '#/components/schemas/Prompt'
+        knownAnswers:
+          $ref: '#/components/schemas/KnownAnswers'
+        concepts:
+          type: array
+          items:
+            type: object
+            properties:
+              conceptType:
+                type: string
+              name:
+                type: string
+              type:
+                type: string
+              value:
+                type: string
+              invalidResponse:
+                type: boolean
+    Subject:
+      description: The subject side concept instance or value
+      type: string
+    Prompt:
+      description: User interaction required for further processing
+      type: string
+    NLMetadata:
+      description: Metadata for the natural language endpoints
+      type: object
+      properties:
+        querySubmittedAt:
+          type: string
+          format: date-time
+          description: Timestamp when the query was submitted
+        languageEngineResponseTime:
+          type: integer
+          description: Response time of the language engine in milliseconds
+        llmTokens:
+          type: object
+          description: Token information from the LLM response
+          properties:
+            completionTokens:
+              type: integer
+              description: Number of completion tokens
+            promptTokens:
+              type: integer
+              description: Number of prompt tokens
+            totalTokens:
+              type: integer
+              description: Total number of tokens
+        apiVersion:
+          type: string
+          description: Version of the API
+        endpoint:
+          type: string
+          description: Name of the endpoint
+        sessionID:
+          type: string
+          description: Session ID of the session
+    Object:
+      description: The object side concept instance or value
+      oneOf:
+      - type: string
+      - type: number
+      - type: boolean
+    NLError:
+      description: Error for the natural language endpoints
+      type: object
+      properties:
+        code:
+          type: integer
+          description: An internal error code.
+        message:
+          type: string
+          description: A description of the error.
+        suggestedChatResponse:
+          type: string
+          description: A recommended message for chat-based clients to show the user. This message is designed to be user-friendly and assumes no knowledge of Rainbird.
+        statusCode:
+          type: string
+          description: The HTTP status code of the response.
     QuestionResponse:
       description: A question the engine wants answered
       type: object
@@ -584,125 +697,15 @@ components:
             type: string
             value: theft
         sid: c1bf18d7-d1f0-44bc-a639-8cd4ded56dce
-    Prompt:
-      description: User interaction required for further processing
-      type: string
-    NLMetadata:
-      description: Metadata for the natural language endpoints
-      type: object
-      properties:
-        querySubmittedAt:
-          type: string
-          format: date-time
-          description: Timestamp when the query was submitted
-        languageEngineResponseTime:
-          type: integer
-          description: Response time of the language engine in milliseconds
-        llmTokens:
-          type: object
-          description: Token information from the LLM response
-          properties:
-            completionTokens:
-              type: integer
-              description: Number of completion tokens
-            promptTokens:
-              type: integer
-              description: Number of prompt tokens
-            totalTokens:
-              type: integer
-              description: Total number of tokens
-        apiVersion:
-          type: string
-          description: Version of the API
-        endpoint:
-          type: string
-          description: Name of the endpoint
-        sessionID:
-          type: string
-          description: Session ID of the session
-    Question:
-      type: object
-      description: A question object that needs a response
-      properties:
-        subject:
-          type: string
-        object:
-          type: string
-        objectType:
-          type: string
-        objectMetadata:
-          type: object
-          additionalProperties: true
-          description: If it exists the object side meta
-        dataType:
-          type: string
-        relationship:
-          type: string
-        type:
-          type: string
-        plural:
-          type: boolean
-        allowCF:
-          type: boolean
-        allowUnknown:
-          type: boolean
-        canAdd:
-          $ref: '#/components/schemas/CanAdd'
-        prompt:
-          $ref: '#/components/schemas/Prompt'
-        knownAnswers:
-          $ref: '#/components/schemas/KnownAnswers'
-        concepts:
-          type: array
-          items:
-            type: object
-            properties:
-              conceptType:
-                type: string
-              name:
-                type: string
-              type:
-                type: string
-              value:
-                type: string
-              invalidResponse:
-                type: boolean
-    Certainty:
-      description: How certain this fact or answer is
-      type: number
-      minimum: 1
-      maximum: 100
+    CanAdd:
+      description: Whether further objects can be added to the query
+      type: boolean
     KnownAnswers:
       description: An array of objects that have been answered
       type: array
     Relationship:
       description: The relationship between subject and object
       type: string
-    Object:
-      description: The object side concept instance or value
-      oneOf:
-      - type: string
-      - type: number
-      - type: boolean
-    NLError:
-      description: Error for the natural language endpoints
-      type: object
-      properties:
-        code:
-          type: integer
-          description: An internal error code.
-        message:
-          type: string
-          description: A description of the error.
-        suggestedChatResponse:
-          type: string
-          description: A recommended message for chat-based clients to show the user. This message is designed to be user-friendly and assumes no knowledge of Rainbird.
-        statusCode:
-          type: string
-          description: The HTTP status code of the response.
-    CanAdd:
-      description: Whether further objects can be added to the query
-      type: boolean
     ResultResponse:
       description: The engine is providing results
       type: object
@@ -766,9 +769,6 @@ components:
           objectMetadata: {}
         queryProfile: []
         sid: c1bf18d7-d1f0-44bc-a639-8cd4ded56dce
-    Subject:
-      description: The subject side concept instance or value
-      type: string
   parameters:
     NLVersion:
       name: Version

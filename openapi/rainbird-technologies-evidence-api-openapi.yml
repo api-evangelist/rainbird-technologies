@@ -954,26 +954,6 @@ paths:
                   sessionID: bdef015c-0ab4-417c-982f-b8d9ff48efc1
 components:
   schemas:
-    WasMet:
-      description: Whether the expression returned true or false when not assigned to a variable. Always returns true when assigned to a variable
-      type: boolean
-    InteractionEventInject:
-      description: Inject event retrieved via the interaction log
-      type: object
-      properties:
-        facts:
-          type: array
-          items:
-            type: object
-            properties:
-              subject:
-                $ref: '#/components/schemas/Subject'
-              relationship:
-                $ref: '#/components/schemas/Relationship'
-              object:
-                $ref: '#/components/schemas/Object'
-              certainty:
-                $ref: '#/components/schemas/Certainty'
     InteractionEventQuestions:
       description: Questions event retrieved via the interaction log
       type: object
@@ -991,6 +971,102 @@ components:
                 $ref: '#/components/schemas/Object'
               prompt:
                 $ref: '#/components/schemas/Prompt'
+    Prompt:
+      description: User interaction required for further processing
+      type: string
+    Object:
+      description: The object side concept instance or value
+      oneOf:
+      - type: string
+      - type: number
+      - type: boolean
+    NLError:
+      description: Error for the natural language endpoints
+      type: object
+      properties:
+        code:
+          type: integer
+          description: An internal error code.
+        message:
+          type: string
+          description: A description of the error.
+        suggestedChatResponse:
+          type: string
+          description: A recommended message for chat-based clients to show the user. This message is designed to be user-friendly and assumes no knowledge of Rainbird.
+        statusCode:
+          type: string
+          description: The HTTP status code of the response.
+    Certainty:
+      description: How certain this fact or answer is
+      type: number
+      minimum: 1
+      maximum: 100
+    Alt:
+      description: Alternative Text for the condition displayed in the Evidence Tree
+      type: string
+    Subject:
+      description: The subject side concept instance or value
+      type: string
+    Impact:
+      description: The impact this condition has on the result as a percentage
+      type: number
+    InteractionEventStart:
+      description: Start event retrieved via the interaction log
+      type: object
+      properties:
+        start:
+          type: object
+          properties:
+            useDraft:
+              type: boolean
+              description: 'Whether the current draft of the knowledge map is being used
+
+                '
+            kmVersion:
+              type: string
+              description: 'ID of the version being queried, which will be different to the knowledge map ID when querying live versions of a knowledge map
+
+                '
+            sessionID:
+              type: string
+              description: The sessionID the interaction log is based on
+    InteractionEventResults:
+      description: Results event retrieved via the interaction log
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            type: object
+            properties:
+              subject:
+                $ref: '#/components/schemas/Subject'
+              relationship:
+                $ref: '#/components/schemas/Relationship'
+              object:
+                $ref: '#/components/schemas/Object'
+              certainty:
+                $ref: '#/components/schemas/Certainty'
+    Relationship:
+      description: The relationship between subject and object
+      type: string
+    InteractionEventInject:
+      description: Inject event retrieved via the interaction log
+      type: object
+      properties:
+        facts:
+          type: array
+          items:
+            type: object
+            properties:
+              subject:
+                $ref: '#/components/schemas/Subject'
+              relationship:
+                $ref: '#/components/schemas/Relationship'
+              object:
+                $ref: '#/components/schemas/Object'
+              certainty:
+                $ref: '#/components/schemas/Certainty'
     NLMetadata:
       description: Metadata for the natural language endpoints
       type: object
@@ -1024,17 +1100,9 @@ components:
         sessionID:
           type: string
           description: Session ID of the session
-    Certainty:
-      description: How certain this fact or answer is
-      type: number
-      minimum: 1
-      maximum: 100
-    Relationship:
-      description: The relationship between subject and object
-      type: string
-    Alt:
-      description: Alternative Text for the condition displayed in the Evidence Tree
-      type: string
+    WasMet:
+      description: Whether the expression returned true or false when not assigned to a variable. Always returns true when assigned to a variable
+      type: boolean
     InteractionEventAnswers:
       description: Answers event retrieved via the interaction log
       type: object
@@ -1052,38 +1120,6 @@ components:
                 $ref: '#/components/schemas/Object'
               certainty:
                 $ref: '#/components/schemas/Certainty'
-    Impact:
-      description: The impact this condition has on the result as a percentage
-      type: number
-    InteractionEventStart:
-      description: Start event retrieved via the interaction log
-      type: object
-      properties:
-        start:
-          type: object
-          properties:
-            useDraft:
-              type: boolean
-              description: 'Whether the current draft of the knowledge map is being used
-
-                '
-            kmVersion:
-              type: string
-              description: 'ID of the version being queried, which will be different to the knowledge map ID when querying live versions of a knowledge map
-
-                '
-            sessionID:
-              type: string
-              description: The sessionID the interaction log is based on
-    Prompt:
-      description: User interaction required for further processing
-      type: string
-    Object:
-      description: The object side concept instance or value
-      oneOf:
-      - type: string
-      - type: number
-      - type: boolean
     InteractionEventQuery:
       description: Query event retrieved via the interaction log
       type: object
@@ -1097,26 +1133,6 @@ components:
               $ref: '#/components/schemas/Relationship'
             object:
               $ref: '#/components/schemas/Object'
-    Subject:
-      description: The subject side concept instance or value
-      type: string
-    InteractionEventResults:
-      description: Results event retrieved via the interaction log
-      type: object
-      properties:
-        results:
-          type: array
-          items:
-            type: object
-            properties:
-              subject:
-                $ref: '#/components/schemas/Subject'
-              relationship:
-                $ref: '#/components/schemas/Relationship'
-              object:
-                $ref: '#/components/schemas/Object'
-              certainty:
-                $ref: '#/components/schemas/Certainty'
     InteractionEventDatasource:
       description: Datasource event retrieved via the interaction log
       type: object
@@ -1135,22 +1151,6 @@ components:
       type: number
       minimum: 1
       maximum: 100
-    NLError:
-      description: Error for the natural language endpoints
-      type: object
-      properties:
-        code:
-          type: integer
-          description: An internal error code.
-        message:
-          type: string
-          description: A description of the error.
-        suggestedChatResponse:
-          type: string
-          description: A recommended message for chat-based clients to show the user. This message is designed to be user-friendly and assumes no knowledge of Rainbird.
-        statusCode:
-          type: string
-          description: The HTTP status code of the response.
   parameters:
     NLVersion:
       name: Version
