@@ -104,6 +104,9 @@ apis:
   - type: APIReference
     url: https://rainbird.redoc.ly/
 common:
+- type: CapabilityMap
+  url: capabilities/rainbird-technologies-capability-edges.yml
+  name: Rainbird Technologies Business Capability Map
 - type: DeveloperPortal
   url: https://docs.rainbird.ai/rainbird/developer-docs/overview
 - type: Documentation

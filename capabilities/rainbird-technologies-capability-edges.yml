@@ -1,0 +1,26 @@
+slug: rainbird-technologies
+provider: Rainbird Technologies
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 1
+edges:
+- tag: Decisions
+  spec_file: rainbird-technologies-decisions-api-openapi.yml
+  capability_id: BC-610.60
+  capability_id_l1: BC-610
+  capability_name: Artificial Intelligence Management
+  confidence: 0.7
+  evidence: GET /start/{kmID}  start - Start a new session; POST /{sessionID}/query  query - Query a running
+    session
+  reason: Operations run inference sessions against a Knowledge Map — injecting facts, querying and answering
+    questions in a symbolic reasoning engine. This is AI model/reasoning lifecycle usage (BC-610.60);
+    it is generic decision automation, not any specific regulated-industry business process.
