@@ -3,6 +3,17 @@ info:
   title: Rainbird — run a decision and fetch its evidence
   version: 1.0.0
   summary: Start a session against a Knowledge Map, run a query, then retrieve the evidence chain behind the result.
+  x-realizes-capability-ids:
+  - BC-610.60
+  x-capability-derivation:
+    method: 'deterministic join: sourceDescriptions -> per-tag OpenAPI -> tag/capability edge. No classification at this step.'
+    min_confidence: 0.7
+    sources:
+    - capability_id: BC-610.60
+      capability_name: Artificial Intelligence Management
+      spec: rainbird-technologies-decisions-api-openapi.yml
+      confidence: 0.7
+    model: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities, CC BY 4.0
 sourceDescriptions:
 - name: decisionsApi
   url: ../openapi/rainbird-technologies-decisions-api-openapi.yml
